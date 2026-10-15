@@ -28,6 +28,7 @@ The dataset is stored as a JSON array, with each element representing one proble
 
 Example:
 
+```json
 {
   "id": 1,
   "title": "Add Two Numbers",
@@ -38,5 +39,6 @@ Example:
   "attempt_history": [],
   "source_url": "https://leetcode.com/problems/add-two-numbers/"
 }
+```
 
 For readability, the dataset is also available in Excel (`.xlsx`) format.
