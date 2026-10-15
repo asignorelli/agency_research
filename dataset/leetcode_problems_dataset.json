@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "title": "Add Two Numbers",
+    "difficulty": "Medium",
+    "task": "Given two nonempty linked lists representing nonnegative integers in reverse digit order, add the numbers and return the result as a linked list.",
+    "starting_code": "class Solution:\n    def addTwoNumbers(self, l1, l2):\n        pass",
+    "knowledge_profile": "Understands loops and basic linked lists but struggles with pointer traversal and carrying values between digit additions.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/add-two-numbers/"
+  },
+  {
+    "id": 2,
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Medium",
+    "task": "Given a string, find the length of its longest substring containing no repeated characters.",
+    "starting_code": "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        pass",
+    "knowledge_profile": "Understands strings and loops but struggles with sliding windows and tracking the most recent occurrence of a character.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+  },
+  {
+    "id": 3,
+    "title": "Longest Palindromic Substring",
+    "difficulty": "Medium",
+    "task": "Given a string, return its longest contiguous substring that reads the same forward and backward.",
+    "starting_code": "class Solution:\n    def longestPalindrome(self, s: str) -> str:\n        pass",
+    "knowledge_profile": "Understands string indexing but struggles with expanding around centers and handling odd- and even-length palindromes.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/longest-palindromic-substring/"
+  },
+  {
+    "id": 4,
+    "title": "3Sum",
+    "difficulty": "Medium",
+    "task": "Given an integer array, find all unique triplets whose three values sum to zero.",
+    "starting_code": "class Solution:\n    def threeSum(self, nums: list[int]) -> list[list[int]]:\n        pass",
+    "knowledge_profile": "Understands sorting and nested loops but struggles with two-pointer techniques and avoiding duplicate triplets.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/3sum/"
+  },
+  {
+    "id": 5,
+    "title": "Container With Most Water",
+    "difficulty": "Medium",
+    "task": "Given heights representing vertical lines, choose two lines that together with the horizontal axis contain the greatest possible amount of water.",
+    "starting_code": "class Solution:\n    def maxArea(self, height: list[int]) -> int:\n        pass",
+    "knowledge_profile": "Understands arrays and arithmetic but struggles with two-pointer movement and explaining why discarding one boundary is valid.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/container-with-most-water/"
+  },
+  {
+    "id": 6,
+    "title": "Group Anagrams",
+    "difficulty": "Medium",
+    "task": "Group together all strings that are anagrams of one another and return the groups in any order.",
+    "starting_code": "class Solution:\n    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:\n        pass",
+    "knowledge_profile": "Understands dictionaries and strings but struggles with choosing a consistent dictionary key for equivalent character arrangements.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/group-anagrams/"
+  },
+  {
+    "id": 7,
+    "title": "Product of Array Except Self",
+    "difficulty": "Medium",
+    "task": "Return an array where each position contains the product of all input values except the value at that position, without using division.",
+    "starting_code": "class Solution:\n    def productExceptSelf(self, nums: list[int]) -> list[int]:\n        pass",
+    "knowledge_profile": "Understands loops and arrays but struggles with prefix and suffix products and combining information from two directions.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/product-of-array-except-self/"
+  },
+  {
+    "id": 8,
+    "title": "Top K Frequent Elements",
+    "difficulty": "Medium",
+    "task": "Given an integer array and an integer k, return the k values that occur most frequently.",
+    "starting_code": "class Solution:\n    def topKFrequent(self, nums: list[int], k: int) -> list[int]:\n        pass",
+    "knowledge_profile": "Understands dictionaries and sorting but struggles with frequency counting and selecting the k highest-frequency values.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/top-k-frequent-elements/"
+  },
+  {
+    "id": 9,
+    "title": "Longest Consecutive Sequence",
+    "difficulty": "Medium",
+    "task": "Given an unsorted integer array, find the length of its longest sequence of consecutive integer values in O(n) time.",
+    "starting_code": "class Solution:\n    def longestConsecutive(self, nums: list[int]) -> int:\n        pass",
+    "knowledge_profile": "Understands sets and loops but struggles with identifying sequence starts and preventing repeated work.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
+  },
+  {
+    "id": 10,
+    "title": "Valid Sudoku",
+    "difficulty": "Medium",
+    "task": "Determine whether a partially filled 9-by-9 Sudoku board is valid according to row, column, and 3-by-3 box constraints.",
+    "starting_code": "class Solution:\n    def isValidSudoku(self, board: list[list[str]]) -> bool:\n        pass",
+    "knowledge_profile": "Understands nested loops and sets but struggles with tracking constraints across rows, columns, and subgrids.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/valid-sudoku/"
+  },
+  {
+    "id": 11,
+    "title": "Search in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "task": "Search for a target in a rotated sorted array of distinct integers in O(log n) time. Return its index or -1 if absent.",
+    "starting_code": "class Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        pass",
+    "knowledge_profile": "Understands binary search but struggles with identifying which half remains sorted and choosing the correct search boundary.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+  },
+  {
+    "id": 12,
+    "title": "Combination Sum",
+    "difficulty": "Medium",
+    "task": "Given distinct positive candidate numbers and a target, find all unique combinations whose values sum to the target. A candidate can be used repeatedly.",
+    "starting_code": "class Solution:\n    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:\n        pass",
+    "knowledge_profile": "Understands functions and lists but struggles with recursive backtracking, stopping conditions, and avoiding duplicate combinations.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/combination-sum/"
+  },
+  {
+    "id": 13,
+    "title": "Permutations",
+    "difficulty": "Medium",
+    "task": "Given a list of distinct integers, return every possible ordering of those integers.",
+    "starting_code": "class Solution:\n    def permute(self, nums: list[int]) -> list[list[int]]:\n        pass",
+    "knowledge_profile": "Understands recursion at a basic level but struggles with choosing unused elements and restoring state during backtracking.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/permutations/"
+  },
+  {
+    "id": 14,
+    "title": "Merge Intervals",
+    "difficulty": "Medium",
+    "task": "Given intervals, merge all overlapping intervals and return the resulting nonoverlapping intervals.",
+    "starting_code": "class Solution:\n    def merge(self, intervals: list[list[int]]) -> list[list[int]]:\n        pass",
+    "knowledge_profile": "Understands lists and comparisons but struggles with sorting intervals and updating interval boundaries.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/merge-intervals/"
+  },
+  {
+    "id": 15,
+    "title": "Rotate Image",
+    "difficulty": "Medium",
+    "task": "Rotate an n-by-n matrix 90 degrees clockwise in place.",
+    "starting_code": "class Solution:\n    def rotate(self, matrix: list[list[int]]) -> None:\n        pass",
+    "knowledge_profile": "Understands nested lists and indexing but struggles with coordinate transformations and in-place swaps.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/rotate-image/"
+  },
+  {
+    "id": 16,
+    "title": "Spiral Matrix",
+    "difficulty": "Medium",
+    "task": "Given a matrix, return its elements in clockwise spiral order, starting at the top-left corner.",
+    "starting_code": "class Solution:\n    def spiralOrder(self, matrix: list[list[int]]) -> list[int]:\n        pass",
+    "knowledge_profile": "Understands nested loops but struggles with updating four traversal boundaries and preventing duplicate visits.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/spiral-matrix/"
+  },
+  {
+    "id": 17,
+    "title": "Set Matrix Zeroes",
+    "difficulty": "Medium",
+    "task": "If a matrix cell contains zero, set every cell in its row and column to zero. Modify the matrix in place.",
+    "starting_code": "class Solution:\n    def setZeroes(self, matrix: list[list[int]]) -> None:\n        pass",
+    "knowledge_profile": "Understands matrices and loops but struggles with preventing newly written zeros from affecting later decisions.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/set-matrix-zeroes/"
+  },
+  {
+    "id": 18,
+    "title": "House Robber",
+    "difficulty": "Medium",
+    "task": "Given the amount of money in each house, determine the maximum amount that can be collected without robbing two adjacent houses.",
+    "starting_code": "class Solution:\n    def rob(self, nums: list[int]) -> int:\n        pass",
+    "knowledge_profile": "Understands loops and conditionals but struggles with dynamic programming states and comparing choices at each position.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/house-robber/"
+  },
+  {
+    "id": 19,
+    "title": "Number of Islands",
+    "difficulty": "Medium",
+    "task": "Given a grid of land and water cells, count the connected islands. Land cells connect horizontally or vertically.",
+    "starting_code": "class Solution:\n    def numIslands(self, grid: list[list[str]]) -> int:\n        pass",
+    "knowledge_profile": "Understands nested lists and conditionals but struggles with graph traversal, visited cells, and recursive or iterative exploration.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/number-of-islands/"
+  },
+  {
+    "id": 20,
+    "title": "Coin Change",
+    "difficulty": "Medium",
+    "task": "Given coin denominations and a target amount, return the minimum number of coins needed to make that amount, or -1 if it is impossible. Each denomination can be used unlimited times.",
+    "starting_code": "class Solution:\n    def coinChange(self, coins: list[int], amount: int) -> int:\n        pass",
+    "knowledge_profile": "Understands loops and arrays but struggles with dynamic programming, unreachable states, and building solutions from smaller amounts.",
+    "attempt_history": [],
+    "source_url": "https://leetcode.com/problems/coin-change/"
+  }
+]
