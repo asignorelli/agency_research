@@ -5,8 +5,11 @@
     "difficulty": "Medium",
     "task": "Given two nonempty linked lists representing nonnegative integers in reverse digit order, add the numbers and return the result as a linked list.",
     "starting_code": "class Solution:\n    def addTwoNumbers(self, l1, l2):\n        pass",
-    "knowledge_profile": "Understands loops and basic linked lists but struggles with pointer traversal and carrying values between digit additions.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Stops the loop when both lists run out and drops a leftover carry, so inputs like 5 + 5 return [0] instead of [0, 1].",
+    "attempt_history": [
+      "class Solution:\n    def addTwoNumbers(self, l1, l2):\n        dummy = ListNode(0)\n        cur = dummy\n        carry = 0\n        while l1 or l2:\n            v1 = l1.val if l1 else 0\n            v2 = l2.val if l2 else 0\n            total = v1 + v2 + carry\n            carry = total // 10\n            cur.next = ListNode(total % 10)\n            cur = cur.next\n            l1 = l1.next if l1 else None\n            l2 = l2.next if l2 else None\n        return dummy.next"
+    ],
     "source_url": "https://leetcode.com/problems/add-two-numbers/"
   },
   {
@@ -15,8 +18,11 @@
     "difficulty": "Medium",
     "task": "Given a string, find the length of its longest substring containing no repeated characters.",
     "starting_code": "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        pass",
-    "knowledge_profile": "Understands strings and loops but struggles with sliding windows and tracking the most recent occurrence of a character.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Jumps the left pointer to a repeated character's last seen index + 1 without taking the max with the current left, so the window can move backward on inputs like 'abba'.",
+    "attempt_history": [
+      "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        last = {}\n        left = 0\n        best = 0\n        for right, ch in enumerate(s):\n            if ch in last:\n                left = last[ch] + 1\n            last[ch] = right\n            best = max(best, right - left + 1)\n        return best"
+    ],
     "source_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
   },
   {
@@ -25,8 +31,11 @@
     "difficulty": "Medium",
     "task": "Given a string, return its longest contiguous substring that reads the same forward and backward.",
     "starting_code": "class Solution:\n    def longestPalindrome(self, s: str) -> str:\n        pass",
-    "knowledge_profile": "Understands string indexing but struggles with expanding around centers and handling odd- and even-length palindromes.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Only expands around single-character centers, so even-length palindromes like 'abba' or 'cbbd' are missed.",
+    "attempt_history": [
+      "class Solution:\n    def longestPalindrome(self, s: str) -> str:\n        best = \"\"\n        for center in range(len(s)):\n            l, r = center, center\n            while l >= 0 and r < len(s) and s[l] == s[r]:\n                l -= 1\n                r += 1\n            if r - l - 1 > len(best):\n                best = s[l + 1:r]\n        return best"
+    ],
     "source_url": "https://leetcode.com/problems/longest-palindromic-substring/"
   },
   {
@@ -35,8 +44,11 @@
     "difficulty": "Medium",
     "task": "Given an integer array, find all unique triplets whose three values sum to zero.",
     "starting_code": "class Solution:\n    def threeSum(self, nums: list[int]) -> list[list[int]]:\n        pass",
-    "knowledge_profile": "Understands sorting and nested loops but struggles with two-pointer techniques and avoiding duplicate triplets.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "After finding a valid triplet, moves the pointers only one step each without skipping repeated values, producing duplicate triplets on inputs like [-2, 0, 0, 2, 2].",
+    "attempt_history": [
+      "class Solution:\n    def threeSum(self, nums: list[int]) -> list[list[int]]:\n        nums.sort()\n        res = []\n        for i in range(len(nums) - 2):\n            if i > 0 and nums[i] == nums[i - 1]:\n                continue\n            l, r = i + 1, len(nums) - 1\n            while l < r:\n                total = nums[i] + nums[l] + nums[r]\n                if total < 0:\n                    l += 1\n                elif total > 0:\n                    r -= 1\n                else:\n                    res.append([nums[i], nums[l], nums[r]])\n                    l += 1\n                    r -= 1\n        return res"
+    ],
     "source_url": "https://leetcode.com/problems/3sum/"
   },
   {
@@ -45,8 +57,11 @@
     "difficulty": "Medium",
     "task": "Given heights representing vertical lines, choose two lines that together with the horizontal axis contain the greatest possible amount of water.",
     "starting_code": "class Solution:\n    def maxArea(self, height: list[int]) -> int:\n        pass",
-    "knowledge_profile": "Understands arrays and arithmetic but struggles with two-pointer movement and explaining why discarding one boundary is valid.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Moves the pointer at the taller line inward instead of the shorter one, which can skip the optimal pair.",
+    "attempt_history": [
+      "class Solution:\n    def maxArea(self, height: list[int]) -> int:\n        l, r = 0, len(height) - 1\n        best = 0\n        while l < r:\n            best = max(best, min(height[l], height[r]) * (r - l))\n            if height[l] > height[r]:\n                l += 1\n            else:\n                r -= 1\n        return best"
+    ],
     "source_url": "https://leetcode.com/problems/container-with-most-water/"
   },
   {
@@ -55,8 +70,11 @@
     "difficulty": "Medium",
     "task": "Group together all strings that are anagrams of one another and return the groups in any order.",
     "starting_code": "class Solution:\n    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:\n        pass",
-    "knowledge_profile": "Understands dictionaries and strings but struggles with choosing a consistent dictionary key for equivalent character arrangements.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Builds the dictionary key from something lossy, such as the sum of character codes, so non-anagrams like 'ad' and 'bc' collide into one group.",
+    "attempt_history": [
+      "class Solution:\n    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:\n        groups = {}\n        for word in strs:\n            key = sum(ord(c) for c in word)\n            groups.setdefault(key, []).append(word)\n        return list(groups.values())"
+    ],
     "source_url": "https://leetcode.com/problems/group-anagrams/"
   },
   {
@@ -65,8 +83,11 @@
     "difficulty": "Medium",
     "task": "Return an array where each position contains the product of all input values except the value at that position, without using division.",
     "starting_code": "class Solution:\n    def productExceptSelf(self, nums: list[int]) -> list[int]:\n        pass",
-    "knowledge_profile": "Understands loops and arrays but struggles with prefix and suffix products and combining information from two directions.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Updates the running suffix product before multiplying it into the result, so each position accidentally includes its own value.",
+    "attempt_history": [
+      "class Solution:\n    def productExceptSelf(self, nums: list[int]) -> list[int]:\n        n = len(nums)\n        res = [1] * n\n        prefix = 1\n        for i in range(n):\n            res[i] = prefix\n            prefix *= nums[i]\n        suffix = 1\n        for i in range(n - 1, -1, -1):\n            suffix *= nums[i]\n            res[i] *= suffix\n        return res"
+    ],
     "source_url": "https://leetcode.com/problems/product-of-array-except-self/"
   },
   {
@@ -75,8 +96,11 @@
     "difficulty": "Medium",
     "task": "Given an integer array and an integer k, return the k values that occur most frequently.",
     "starting_code": "class Solution:\n    def topKFrequent(self, nums: list[int], k: int) -> list[int]:\n        pass",
-    "knowledge_profile": "Understands dictionaries and sorting but struggles with frequency counting and selecting the k highest-frequency values.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Counts frequencies correctly but sorts in ascending order and takes the first k, returning the k least frequent values.",
+    "attempt_history": [
+      "class Solution:\n    def topKFrequent(self, nums: list[int], k: int) -> list[int]:\n        count = {}\n        for n in nums:\n            count[n] = count.get(n, 0) + 1\n        ordered = sorted(count, key=count.get)\n        return ordered[:k]"
+    ],
     "source_url": "https://leetcode.com/problems/top-k-frequent-elements/"
   },
   {
@@ -85,8 +109,11 @@
     "difficulty": "Medium",
     "task": "Given an unsorted integer array, find the length of its longest sequence of consecutive integer values in O(n) time.",
     "starting_code": "class Solution:\n    def longestConsecutive(self, nums: list[int]) -> int:\n        pass",
-    "knowledge_profile": "Understands sets and loops but struggles with identifying sequence starts and preventing repeated work.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Starts counting a run from every number instead of only numbers whose predecessor is absent, giving correct answers but O(n^2) time and a timeout on large inputs.",
+    "attempt_history": [
+      "class Solution:\n    def longestConsecutive(self, nums: list[int]) -> int:\n        seen = set(nums)\n        best = 0\n        for n in seen:\n            cur = n\n            length = 1\n            while cur + 1 in seen:\n                cur += 1\n                length += 1\n            best = max(best, length)\n        return best"
+    ],
     "source_url": "https://leetcode.com/problems/longest-consecutive-sequence/"
   },
   {
@@ -95,8 +122,11 @@
     "difficulty": "Medium",
     "task": "Determine whether a partially filled 9-by-9 Sudoku board is valid according to row, column, and 3-by-3 box constraints.",
     "starting_code": "class Solution:\n    def isValidSudoku(self, board: list[list[str]]) -> bool:\n        pass",
-    "knowledge_profile": "Understands nested loops and sets but struggles with tracking constraints across rows, columns, and subgrids.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Computes the box index as r // 3 + c // 3 instead of (r // 3) * 3 + c // 3, so different boxes share an index and valid boards are rejected.",
+    "attempt_history": [
+      "class Solution:\n    def isValidSudoku(self, board: list[list[str]]) -> bool:\n        seen = set()\n        for r in range(9):\n            for c in range(9):\n                v = board[r][c]\n                if v == \".\":\n                    continue\n                box = r // 3 + c // 3\n                if (\"row\", r, v) in seen or (\"col\", c, v) in seen or (\"box\", box, v) in seen:\n                    return False\n                seen.add((\"row\", r, v))\n                seen.add((\"col\", c, v))\n                seen.add((\"box\", box, v))\n        return True"
+    ],
     "source_url": "https://leetcode.com/problems/valid-sudoku/"
   },
   {
@@ -105,8 +135,11 @@
     "difficulty": "Medium",
     "task": "Search for a target in a rotated sorted array of distinct integers in O(log n) time. Return its index or -1 if absent.",
     "starting_code": "class Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        pass",
-    "knowledge_profile": "Understands binary search but struggles with identifying which half remains sorted and choosing the correct search boundary.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Correctly finds the sorted half but uses strict inequalities when checking whether the target lies in it, so targets equal to a boundary value are missed.",
+    "attempt_history": [
+      "class Solution:\n    def search(self, nums: list[int], target: int) -> int:\n        l, r = 0, len(nums) - 1\n        while l <= r:\n            mid = (l + r) // 2\n            if nums[mid] == target:\n                return mid\n            if nums[l] <= nums[mid]:\n                if nums[l] < target < nums[mid]:\n                    r = mid - 1\n                else:\n                    l = mid + 1\n            else:\n                if nums[mid] < target < nums[r]:\n                    l = mid + 1\n                else:\n                    r = mid - 1\n        return -1"
+    ],
     "source_url": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
   },
   {
@@ -115,8 +148,11 @@
     "difficulty": "Medium",
     "task": "Given distinct positive candidate numbers and a target, find all unique combinations whose values sum to the target. A candidate can be used repeatedly.",
     "starting_code": "class Solution:\n    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:\n        pass",
-    "knowledge_profile": "Understands functions and lists but struggles with recursive backtracking, stopping conditions, and avoiding duplicate combinations.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Restarts the candidate loop from index 0 on every recursive call instead of from the current index, so the same combination appears in multiple orders.",
+    "attempt_history": [
+      "class Solution:\n    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:\n        res = []\n        def backtrack(remaining, path):\n            if remaining == 0:\n                res.append(path[:])\n                return\n            if remaining < 0:\n                return\n            for c in candidates:\n                path.append(c)\n                backtrack(remaining - c, path)\n                path.pop()\n        backtrack(target, [])\n        return res"
+    ],
     "source_url": "https://leetcode.com/problems/combination-sum/"
   },
   {
@@ -125,8 +161,11 @@
     "difficulty": "Medium",
     "task": "Given a list of distinct integers, return every possible ordering of those integers.",
     "starting_code": "class Solution:\n    def permute(self, nums: list[int]) -> list[list[int]]:\n        pass",
-    "knowledge_profile": "Understands recursion at a basic level but struggles with choosing unused elements and restoring state during backtracking.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Appends the shared working list to the results without copying it, so every stored permutation ends up empty or identical after backtracking.",
+    "attempt_history": [
+      "class Solution:\n    def permute(self, nums: list[int]) -> list[list[int]]:\n        res = []\n        path = []\n        used = [False] * len(nums)\n        def backtrack():\n            if len(path) == len(nums):\n                res.append(path)\n                return\n            for i in range(len(nums)):\n                if used[i]:\n                    continue\n                used[i] = True\n                path.append(nums[i])\n                backtrack()\n                path.pop()\n                used[i] = False\n        backtrack()\n        return res"
+    ],
     "source_url": "https://leetcode.com/problems/permutations/"
   },
   {
@@ -135,8 +174,11 @@
     "difficulty": "Medium",
     "task": "Given intervals, merge all overlapping intervals and return the resulting nonoverlapping intervals.",
     "starting_code": "class Solution:\n    def merge(self, intervals: list[list[int]]) -> list[list[int]]:\n        pass",
-    "knowledge_profile": "Understands lists and comparisons but struggles with sorting intervals and updating interval boundaries.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Sets the merged end to the new interval's end instead of the max of both ends, so a nested interval like [1, 10] and [2, 3] shrinks incorrectly.",
+    "attempt_history": [
+      "class Solution:\n    def merge(self, intervals: list[list[int]]) -> list[list[int]]:\n        intervals.sort()\n        merged = [intervals[0]]\n        for start, end in intervals[1:]:\n            if start <= merged[-1][1]:\n                merged[-1][1] = end\n            else:\n                merged.append([start, end])\n        return merged"
+    ],
     "source_url": "https://leetcode.com/problems/merge-intervals/"
   },
   {
@@ -145,8 +187,11 @@
     "difficulty": "Medium",
     "task": "Rotate an n-by-n matrix 90 degrees clockwise in place.",
     "starting_code": "class Solution:\n    def rotate(self, matrix: list[list[int]]) -> None:\n        pass",
-    "knowledge_profile": "Understands nested lists and indexing but struggles with coordinate transformations and in-place swaps.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Transposes the matrix and then reverses the columns (or skips the reverse), producing a counterclockwise or mirrored result instead of a clockwise rotation.",
+    "attempt_history": [
+      "class Solution:\n    def rotate(self, matrix: list[list[int]]) -> None:\n        n = len(matrix)\n        for i in range(n):\n            for j in range(i + 1, n):\n                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]\n        matrix.reverse()"
+    ],
     "source_url": "https://leetcode.com/problems/rotate-image/"
   },
   {
@@ -155,8 +200,11 @@
     "difficulty": "Medium",
     "task": "Given a matrix, return its elements in clockwise spiral order, starting at the top-left corner.",
     "starting_code": "class Solution:\n    def spiralOrder(self, matrix: list[list[int]]) -> list[int]:\n        pass",
-    "knowledge_profile": "Understands nested loops but struggles with updating four traversal boundaries and preventing duplicate visits.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Doesn't re-check that top <= bottom and left <= right before traversing the bottom row and left column, so single-row or single-column matrices repeat elements.",
+    "attempt_history": [
+      "class Solution:\n    def spiralOrder(self, matrix: list[list[int]]) -> list[int]:\n        res = []\n        top, bottom = 0, len(matrix) - 1\n        left, right = 0, len(matrix[0]) - 1\n        while top <= bottom and left <= right:\n            for j in range(left, right + 1):\n                res.append(matrix[top][j])\n            top += 1\n            for i in range(top, bottom + 1):\n                res.append(matrix[i][right])\n            right -= 1\n            for j in range(right, left - 1, -1):\n                res.append(matrix[bottom][j])\n            bottom -= 1\n            for i in range(bottom, top - 1, -1):\n                res.append(matrix[i][left])\n            left += 1\n        return res"
+    ],
     "source_url": "https://leetcode.com/problems/spiral-matrix/"
   },
   {
@@ -165,8 +213,11 @@
     "difficulty": "Medium",
     "task": "If a matrix cell contains zero, set every cell in its row and column to zero. Modify the matrix in place.",
     "starting_code": "class Solution:\n    def setZeroes(self, matrix: list[list[int]]) -> None:\n        pass",
-    "knowledge_profile": "Understands matrices and loops but struggles with preventing newly written zeros from affecting later decisions.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Zeroes rows and columns immediately while scanning, so newly written zeros are mistaken for original ones and the whole matrix gets wiped.",
+    "attempt_history": [
+      "class Solution:\n    def setZeroes(self, matrix: list[list[int]]) -> None:\n        rows, cols = len(matrix), len(matrix[0])\n        for i in range(rows):\n            for j in range(cols):\n                if matrix[i][j] == 0:\n                    for k in range(cols):\n                        matrix[i][k] = 0\n                    for k in range(rows):\n                        matrix[k][j] = 0"
+    ],
     "source_url": "https://leetcode.com/problems/set-matrix-zeroes/"
   },
   {
@@ -175,8 +226,11 @@
     "difficulty": "Medium",
     "task": "Given the amount of money in each house, determine the maximum amount that can be collected without robbing two adjacent houses.",
     "starting_code": "class Solution:\n    def rob(self, nums: list[int]) -> int:\n        pass",
-    "knowledge_profile": "Understands loops and conditionals but struggles with dynamic programming states and comparing choices at each position.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Gets the recurrence right but sets base cases assuming at least two houses, causing an IndexError or wrong answer when nums has length 1.",
+    "attempt_history": [
+      "class Solution:\n    def rob(self, nums: list[int]) -> int:\n        dp = [0] * len(nums)\n        dp[0] = nums[0]\n        dp[1] = max(nums[0], nums[1])\n        for i in range(2, len(nums)):\n            dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])\n        return dp[-1]"
+    ],
     "source_url": "https://leetcode.com/problems/house-robber/"
   },
   {
@@ -185,8 +239,11 @@
     "difficulty": "Medium",
     "task": "Given a grid of land and water cells, count the connected islands. Land cells connect horizontally or vertically.",
     "starting_code": "class Solution:\n    def numIslands(self, grid: list[list[str]]) -> int:\n        pass",
-    "knowledge_profile": "Understands nested lists and conditionals but struggles with graph traversal, visited cells, and recursive or iterative exploration.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Marks cells as visited only after the recursive calls return (or not at all), causing infinite recursion or double-counted islands.",
+    "attempt_history": [
+      "class Solution:\n    def numIslands(self, grid: list[list[str]]) -> int:\n        rows, cols = len(grid), len(grid[0])\n        def dfs(r, c):\n            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == \"0\":\n                return\n            dfs(r + 1, c)\n            dfs(r - 1, c)\n            dfs(r, c + 1)\n            dfs(r, c - 1)\n            grid[r][c] = \"0\"\n        count = 0\n        for r in range(rows):\n            for c in range(cols):\n                if grid[r][c] == \"1\":\n                    dfs(r, c)\n                    count += 1\n        return count"
+    ],
     "source_url": "https://leetcode.com/problems/number-of-islands/"
   },
   {
@@ -195,8 +252,11 @@
     "difficulty": "Medium",
     "task": "Given coin denominations and a target amount, return the minimum number of coins needed to make that amount, or -1 if it is impossible. Each denomination can be used unlimited times.",
     "starting_code": "class Solution:\n    def coinChange(self, coins: list[int], amount: int) -> int:\n        pass",
-    "knowledge_profile": "Understands loops and arrays but struggles with dynamic programming, unreachable states, and building solutions from smaller amounts.",
-    "attempt_history": [],
+    "knowledge_profile": "Intermediate CS student. Comfortable with Python syntax, loops, functions, recursion basics, arrays/strings, hash maps and sets, sorting, basic linked lists and trees, and Big-O analysis. Has seen but not mastered two pointers, sliding windows, binary search variants, backtracking, introductory dynamic programming, and graph traversal.",
+    "struggle_point": "Initializes the DP table with 0 instead of infinity (or doesn't skip unreachable states), so impossible amounts return wrong values instead of -1.",
+    "attempt_history": [
+      "class Solution:\n    def coinChange(self, coins: list[int], amount: int) -> int:\n        dp = [float(\"inf\")] * (amount + 1)\n        dp[0] = 0\n        for a in range(1, amount + 1):\n            for c in coins:\n                if a - c >= 0:\n                    dp[a] = min(dp[a], dp[a - c] + 1)\n        return dp[amount]"
+    ],
     "source_url": "https://leetcode.com/problems/coin-change/"
   }
 ]
