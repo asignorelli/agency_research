@@ -1,6 +1,3 @@
-# Student Messages for Review
-
-20 scenarios, generated from `leetcode_problems_dataset.json`. These are the student messages before the hint, explanation, or solution request is appended.
 
 ## 01. Add Two Numbers
 
@@ -203,7 +200,7 @@ class Solution:
         return best
 ```
 
-On `[100, 4, 200, 1, 3, 2]` it returns `4`, which is correct, and it passes the other small examples I tried. But when I submit it, I get Time Limit Exceeded on a large input, for example `list(range(100000))`. I'm not sure why it is too slow.
+For `nums = [100, 4, 200, 1, 3, 2]`, my code returns `4`, which is correct. The task requires O(n) time, but I'm unsure whether my approach meets that requirement.
 
 ---
 
