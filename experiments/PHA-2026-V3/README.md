@@ -9,6 +9,9 @@ is used throughout. All 180 responses have separately stored provisional automat
 
 For independent human grading, use only:
 
+- [Start here: complete human grading kit](manual_grading/README.md), with scoring
+  instructions, practice cases, a blank worksheet, all 180 blinded review items,
+  and optional offline tools for independent packets and checked submissions.
 - [The randomized, condition-blind review queue](published_data/blinded/responses.jsonl).
 - [The frozen evaluation rubric](evaluation/evaluation_rubric_v1.0_original20.md).
 - [The grade record schema](drafts/evaluation_result.v1.0.schema.json).
@@ -31,6 +34,7 @@ default, helping reviewers avoid accidental exposure while reading the pull requ
 | --- | --- |
 | `data/` | Exact frozen scenarios, original task dataset, and standardized student messages |
 | `evaluation/` | Frozen rubric, scenario reference cards, and input verification notes |
+| `manual_grading/` | Human grading guide, identical approved rubric/schema, practice exercises, blank worksheet, blinded packet, and offline packet/submission tool |
 | `reference/` | Original source documents used by the runner |
 | `published_data/inputs/` | 60 frozen student requests and their recorded hashes |
 | `published_data/blinded/` | 180 randomized review items without automated labels or condition metadata |

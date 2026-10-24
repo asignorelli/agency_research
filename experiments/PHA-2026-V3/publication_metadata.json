@@ -18,5 +18,16 @@
     "pilot outputs",
     "local machine histories",
     "temporary locks and WAL/SHM files"
-  ]
+  ],
+  "manual_grading_kit": {
+    "path": "manual_grading/README.md",
+    "rubric_version": "1.0",
+    "rubric_sha256": "3e231dafba2de6c23b4536ae16554ca79017431c5bab1604ee5b37ed60546cb3",
+    "schema_sha256": "08a7d10d7548d218f400de3ec56326ac2889780f2100054726a3caed1c27a7a9",
+    "practice_cases": 18,
+    "required_independent_reviews_per_response": 2,
+    "planned_initial_human_reviews": 360,
+    "completed_human_grading_claimed": false,
+    "automated_scores_in_kit": false
+  }
 }

@@ -10,8 +10,8 @@
     },
     {
       "path": ".gitattributes",
-      "bytes": 558,
-      "sha256": "26acf31b4f071df6a5b33af95594f2a519b572e57e472ea9f8c83e242c18cd82"
+      "bytes": 730,
+      "sha256": "681f1253bb7bc62be0be30467ed3d909ac6b5af210c414170d834e73c5601b46"
     },
     {
       "path": ".gitignore",
@@ -30,8 +30,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5305,
-      "sha256": "2f3170b5dd14090786fc9b4198048b939637ae3dbed2f5ce8518f166e66927dd"
+      "bytes": 5714,
+      "sha256": "9e37d17c7910ff130436bd11aae6325633051db855ae3f05542c4ca19068afcf"
     },
     {
       "path": "agency_study/__init__.py",
@@ -149,14 +149,79 @@
       "sha256": "3cdb61d8d1937ae2ba0bc2244739f55ee5d043289b1303767761e683653910c6"
     },
     {
+      "path": "manual_grading/README.md",
+      "bytes": 5360,
+      "sha256": "52730d363c443e3b1bcd7557c707ba7c1450fdf35c4d57c8b22e00d9879adcb4"
+    },
+    {
+      "path": "manual_grading/calibration/README.md",
+      "bytes": 1714,
+      "sha256": "04a416c4cf93390e63c21196eeafe95271f07939c7403a6316878527ac595ab4"
+    },
+    {
+      "path": "manual_grading/calibration/exercises_v1.0.md",
+      "bytes": 7373,
+      "sha256": "63c2f73a3e389134e413b702f915a10d4471c1b8a843ba246c24cd9bef03a44f"
+    },
+    {
+      "path": "manual_grading/calibration/session_log.md",
+      "bytes": 2055,
+      "sha256": "45f55dc8a5043710547aecd2e32a9e3bae05929ac9c46dfe4aaa728a8c79b717"
+    },
+    {
+      "path": "manual_grading/evaluation_result.v1.0.schema.json",
+      "bytes": 3274,
+      "sha256": "08a7d10d7548d218f400de3ec56326ac2889780f2100054726a3caed1c27a7a9"
+    },
+    {
+      "path": "manual_grading/grade_template.json",
+      "bytes": 565,
+      "sha256": "99178f03fc8a9b4945366c6fbe7afb98f119e14f6234ace8e2168e26802c6e84"
+    },
+    {
+      "path": "manual_grading/grading_worksheet.md",
+      "bytes": 2002,
+      "sha256": "36dce0df409cb3244c225f7f889a56be0c9901f25b104f3f0feff18a4c3f0453"
+    },
+    {
+      "path": "manual_grading/packet.py",
+      "bytes": 10566,
+      "sha256": "40a08a88cbe478016296b2af73c45f261ca3d3406cab4d04d121a068d782dded"
+    },
+    {
+      "path": "manual_grading/record_fields.md",
+      "bytes": 2732,
+      "sha256": "3626d55e1ed211f5794b86ac791f313890b4a6fd603918eb14dfa5f143654f51"
+    },
+    {
+      "path": "manual_grading/responses.md",
+      "bytes": 620174,
+      "sha256": "eed90dca679ec4b01e7375bd5cbffd8252f6b698f42693b7f56c96718608057f"
+    },
+    {
+      "path": "manual_grading/rubric_v1.0.md",
+      "bytes": 21337,
+      "sha256": "3e231dafba2de6c23b4536ae16554ca79017431c5bab1604ee5b37ed60546cb3"
+    },
+    {
+      "path": "manual_grading/scoring_walkthrough.md",
+      "bytes": 7015,
+      "sha256": "d4fa8d62cdc240b5989efea9094fc564db5fba9f0c2c31f2ef083cfb69d8c39e"
+    },
+    {
+      "path": "manual_grading/submission_and_adjudication.md",
+      "bytes": 5955,
+      "sha256": "35f67d95a6efd3bed0a5e13e15ffbefb8256b902cb017bda886b67d517b02e78"
+    },
+    {
       "path": "pilots/tutor_cases.json",
       "bytes": 919,
       "sha256": "38437eed41bf1545e104981a86d9b5cc655a96526123545760beb78e295999ad"
     },
     {
       "path": "publication_metadata.json",
-      "bytes": 965,
-      "sha256": "8161c8506cad90ce93bc93e1830090671be5e575cd5acd2229742e2c318450a0"
+      "bytes": 1446,
+      "sha256": "074c3975c4c8a6cc637b96d4658bf69c9ebe9743e18c162c591380ea53ce6125"
     },
     {
       "path": "published_data/README.md",
@@ -189,6 +254,16 @@
       "sha256": "3077b5d7d85e9fe57460c7e60feba8bdcef6131a6dab97329ac7cfcac77a0774"
     },
     {
+      "path": "published_data/researcher_only/calibration/README.md",
+      "bytes": 736,
+      "sha256": "5e9a9a431528dd87da4c697b1edea0b5803cc3d2512ca52472de33366f9d7a29"
+    },
+    {
+      "path": "published_data/researcher_only/calibration/answer_key_v1.0.md",
+      "bytes": 3438,
+      "sha256": "5586d507c060b6c027f9a04599f2d0eb6dc167866cfadd050a9ca557591f0850"
+    },
+    {
       "path": "published_data/researcher_only/collection_progress.json",
       "bytes": 484,
       "sha256": "4bc3b62295ee040ce7b7d1b416d7632270acec7dc850c1c34b791a6db5545968"
@@ -207,11 +282,6 @@
       "path": "published_data/researcher_only/grading/153aec2519c0/grades.jsonl",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    {
-      "path": "published_data/researcher_only/grading/153aec2519c0/manifest.json",
-      "bytes": 6428,
-      "sha256": "2ae1db3ce68f91a563f89ea16929b983b97e57a228876566d69b73b64f3b2818"
     },
     {
       "path": "published_data/researcher_only/grading/153aec2519c0/progress.json",
@@ -242,11 +312,6 @@
       "path": "published_data/researcher_only/grading/267113f1dc6f/grades.jsonl",
       "bytes": 347988,
       "sha256": "ab3fe3a9d51171c486b74195ed191e37165f300eb83951ad9bbfca221e3dae1e"
-    },
-    {
-      "path": "published_data/researcher_only/grading/267113f1dc6f/manifest.json",
-      "bytes": 6428,
-      "sha256": "bd03dd148b9b044b1ffba499b17941ad0d92bbb8168f186eef4f95cd4c5ca7e7"
     },
     {
       "path": "published_data/researcher_only/grading/267113f1dc6f/progress.json",
@@ -307,11 +372,6 @@
       "path": "published_data/researcher_only/grading/bc64a23336cb/grades.jsonl",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    {
-      "path": "published_data/researcher_only/grading/bc64a23336cb/manifest.json",
-      "bytes": 6428,
-      "sha256": "3708910b0dd6821b2581b6adf1bc0a9efdb76d77c8b384ba34805bb4a5809dc0"
     },
     {
       "path": "published_data/researcher_only/grading/bc64a23336cb/progress.json",
@@ -385,13 +445,18 @@
     },
     {
       "path": "scripts/verify_published_data.py",
-      "bytes": 4911,
-      "sha256": "10703ba1e408ce61f78a119ce43a279351873b40a905ae1b21519ca7a5aa07ed"
+      "bytes": 6385,
+      "sha256": "64708c122254ca0e7291efd45805cbe20a5f034c8b42f38f7f362dfcdc82bb81"
     },
     {
       "path": "tests/test_agentic_grading.py",
       "bytes": 24746,
       "sha256": "7a3b48f343e14e73e22f67663c19b1962102c472050394c1f5429709cbe75cc8"
+    },
+    {
+      "path": "tests/test_manual_grading.py",
+      "bytes": 6954,
+      "sha256": "99bbac9a5b7e1eb7715d3c2a37c2674df776013b3717af0e72ece96f83038c43"
     },
     {
       "path": "tests/test_pipeline.py",

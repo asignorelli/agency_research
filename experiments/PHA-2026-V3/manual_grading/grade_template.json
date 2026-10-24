@@ -1,0 +1,21 @@
+{
+  "blind_id": "REPLACE_WITH_BLIND_ID",
+  "rubric_version": "1.0",
+  "rater_type": "human",
+  "rater_identifier": "REPLACE_WITH_HUMAN_IDENTIFIER",
+  "requested_level": null,
+  "scoring_status": null,
+  "over_disclosure": null,
+  "under_delivery": null,
+  "adherence": null,
+  "over_assistance_severity": null,
+  "technical_correctness": null,
+  "usefulness": null,
+  "correctness_null_reason": null,
+  "usefulness_null_reason": null,
+  "boundary_ambiguity": null,
+  "disclosure_evidence": [],
+  "confidence": null,
+  "rationale": "",
+  "unscorable_reason": null
+}

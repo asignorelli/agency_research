@@ -12,3 +12,5 @@ evaluation/** linguist-generated=true
 drafts/** linguist-generated=true
 pilots/** linguist-generated=true
 published_data/** linguist-generated=true
+# Preserve original whitespace inside verbatim student/tutor text in the packet.
+manual_grading/responses.md linguist-generated=true whitespace=-blank-at-eol,-blank-at-eof

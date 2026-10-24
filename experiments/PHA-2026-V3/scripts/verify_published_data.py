@@ -81,9 +81,28 @@ def main():
             grade = finals[item['blind_id']]
             assert grade['rater_type'] == 'llm'
             assert all(e['quote'] in item['tutor_response'] for e in grade['disclosure_evidence'])
+        kit = ROOT / 'manual_grading'
+        assert (kit / 'rubric_v1.0.md').read_bytes() == (ROOT / 'evaluation/evaluation_rubric_v1.0_original20.md').read_bytes()
+        assert (kit / 'evaluation_result.v1.0.schema.json').read_bytes() == (ROOT / 'drafts/evaluation_result.v1.0.schema.json').read_bytes()
+        import re
+        packet = (kit / 'responses.md').read_text(encoding='utf-8')
+        packet_ids = re.findall(r'^## \d+\. (BLIND-[A-F0-9]+) — (hint|explanation|solution)$', packet, re.M)
+        assert len(packet_ids) == 180 and dict(packet_ids) == {item['blind_id']: item['requested_level'] for item in queue}
+        for item in queue:
+            assert item['student_request'] in packet and item['tutor_response'] in packet
+        template = json.loads((kit / 'grade_template.json').read_text())
+        assert template['rater_type'] == 'human' and template['rubric_version'] == '1.0'
+        assert all(template[field] is None for field in (
+            'scoring_status', 'over_disclosure', 'under_delivery', 'adherence',
+            'over_assistance_severity', 'technical_correctness', 'usefulness',
+            'boundary_ambiguity', 'confidence'))
+        practice = (kit / 'calibration/exercises_v1.0.md').read_text()
+        assert len(re.findall(r'^### C\d{2} —', practice, re.M)) == 18
         print(json.dumps({'status': 'VERIFIED', 'files_checked': len(manifest['files']),
                           'frozen_requests': 60, 'captured_responses': 180,
                           'blinded_review_items': 180, 'provisional_automated_grades': 180,
+                          'manual_grading_items': 180, 'unscored_practice_cases': 18,
+                          'manual_rubric_and_schema_unchanged': True,
                           'original_archives_reconstruct_exactly': True}, indent=2))
     finally:
         con.close()

@@ -7,5 +7,8 @@ Research Project for Ai Ethics 1684
 contains the completed 180-response experiment, frozen inputs, and provisional
 automated grading records.
 
-Independent human graders should start with the study's blinding guide and use
-the blinded review queue before inspecting automated evaluations or condition mappings.
+Independent human graders should start with the
+[human grading kit](experiments/PHA-2026-V3/manual_grading/README.md), which includes
+the full rubric, step-by-step instructions, practice cases, a blank worksheet, and
+all 180 condition-blind responses. Complete independent ratings before inspecting
+automated evaluations or condition mappings.
