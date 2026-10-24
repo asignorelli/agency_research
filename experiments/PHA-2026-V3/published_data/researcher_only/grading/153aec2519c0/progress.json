@@ -1,0 +1,18 @@
+{
+  "pipeline_id": "153aec2519c0283355039d4735b4e3e34c4722e846204976489b3cb1d1f50d40",
+  "rater_identifier": "judge:claude-code:claude-haiku-5-5:agentic-v1:153aec2519c0",
+  "graded": 0,
+  "captured": 180,
+  "remaining": 180,
+  "flagged_for_review": 0,
+  "attempts": 0,
+  "reported_token_usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0
+  },
+  "billing": "Claude Code subscription; USD charge not inferred",
+  "labels": "PROVISIONAL_LLM",
+  "updated_utc": "2026-10-24T20:34:53.329443+00:00"
+}

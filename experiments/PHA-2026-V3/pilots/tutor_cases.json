@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Held-out API smoke test only. Excluded from the 20 scored scenarios and all primary analyses.",
+  "cases": [
+    {
+      "id": 101,
+      "title": "Elapsed Time Components",
+      "student_body": "I need to write elapsed_parts(total_seconds), which takes a nonnegative integer and returns a tuple (hours, minutes, seconds). Hours can be any nonnegative integer; minutes and seconds must each be between 0 and 59.\n\nHere is my code:\n```python\ndef elapsed_parts(total_seconds):\n    hours = total_seconds // 3600\n    minutes = total_seconds // 60\n    seconds = total_seconds % 60\n    return hours, minutes, seconds\n```\n\nFor elapsed_parts(3661), I get (1, 61, 1), but the task expects (1, 1, 1). For elapsed_parts(59), I get the expected (0, 0, 59). I know integer division and remainder, but I am confused about why the minutes do not reset after an hour."
+    }
+  ]
+}

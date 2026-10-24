@@ -1,0 +1,2 @@
+# Needed for Claude Code grading, the optional API judge, or validated human-grade imports
+jsonschema>=4.20,<5
