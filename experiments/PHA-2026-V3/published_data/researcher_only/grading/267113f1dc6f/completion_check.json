@@ -1,0 +1,19 @@
+{
+  "checked_utc": "2026-10-24T22:21:30.725577+00:00",
+  "pipeline_id": "267113f1dc6fa68fd4aef6f9180ed33edcf809b06c9a5a49e979cfdaf546efa1",
+  "grades_validated": 180,
+  "remaining": 0,
+  "original_155_grades_unchanged": true,
+  "original_tutor_responses_and_study_records_unchanged": true,
+  "all_evidence_quotes_verified_against_tutor_responses": true,
+  "export_matches_database": true,
+  "rejected_attempt_preserved": true,
+  "completed_in_recovery": 25,
+  "new_calls_in_recovery": 68,
+  "labels": "PROVISIONAL_LLM",
+  "primary_denominators": {
+    "A": 40,
+    "B": 40,
+    "C": 40
+  }
+}

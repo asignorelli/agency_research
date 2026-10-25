@@ -1,0 +1,51 @@
+{
+  "study_id": "PHA-2026-V3",
+  "dataset": "data/scenarios_original20.json",
+  "cards": "evaluation/scenario_scoring_cards_original20.json",
+  "rubric": "evaluation/evaluation_rubric_v1.0_original20.md",
+  "schema": "drafts/evaluation_result.v1.0.schema.json",
+  "student_document": "reference/Student_Simulator_System_Prompt.md",
+  "tutor_document": "reference/Tutor_Agents_Revised_Proposal.md",
+  "student": {
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "effort": "medium",
+    "thinking": "adaptive",
+    "max_output_tokens": 2500,
+    "input_usd_per_million": 0.1,
+    "output_usd_per_million": 0.5
+  },
+  "tutor": {
+    "provider": "deepinfra",
+    "model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    "max_output_tokens": 2000,
+    "input_usd_per_million": 0.1,
+    "output_usd_per_million": 0.32,
+    "temperature": 0.0
+  },
+  "judge": {
+    "provider": null,
+    "model": null,
+    "max_output_tokens": 2800,
+    "input_usd_per_million": null,
+    "output_usd_per_million": null
+  },
+  "retry": {
+    "maximum_attempts": 3,
+    "base_delay_seconds": 1
+  },
+  "randomization_seed": 20261020,
+  "concurrency": 1,
+  "original_dataset": "data/leetcode_problems_dataset.json",
+  "student_input_mode": "standardized_import",
+  "student_messages": "data/student_messages_v2.md",
+  "paths": {
+    "database": "workspace/experiment_v3.sqlite",
+    "archive": "workspace/raw_attempts_v3.jsonl",
+    "pilot_database": "workspace/tutor_pilot_v3.sqlite",
+    "pilot_archive": "workspace/tutor_pilot_raw_attempts_v3.jsonl",
+    "student_export": "workspace/student_candidates_v3_to_review.json",
+    "blind_export": "workspace/blinded_review_queue_v3.jsonl",
+    "analysis": "workspace/analysis_summary_v3.json"
+  }
+}

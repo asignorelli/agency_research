@@ -1,0 +1,50 @@
+{
+  "original_filename": "attempts.jsonl",
+  "original_bytes": 51991605,
+  "original_sha256": "e257e3f33deccb1403c1e4ab1b68f70df5797517c40200909d13cd619cc6a00f",
+  "reconstruction": "Concatenate the listed files in order, as bytes.",
+  "parts": [
+    {
+      "file": "attempts.part-0001.jsonl",
+      "bytes": 8348853,
+      "records": 154,
+      "sha256": "4bfd8f720f17410de191d2e7e7d45793c19e6e466c629e4498809572ef6487bd"
+    },
+    {
+      "file": "attempts.part-0002.jsonl",
+      "bytes": 8362375,
+      "records": 156,
+      "sha256": "c57919f8e6e7b03bd16b271039dbf4cfb5901cfd6f0d0ad1acb5d5fd2afc8cb7"
+    },
+    {
+      "file": "attempts.part-0003.jsonl",
+      "bytes": 8341179,
+      "records": 157,
+      "sha256": "93607438e564e27ccdc08e7bdefdba803dea7a7a89d16538fa110a7ca3c86e09"
+    },
+    {
+      "file": "attempts.part-0004.jsonl",
+      "bytes": 8380056,
+      "records": 157,
+      "sha256": "75931bf59a7db126acebcb4e2e2222e1f0c679c9e56484b9af80b9bfbdd53fd9"
+    },
+    {
+      "file": "attempts.part-0005.jsonl",
+      "bytes": 8365764,
+      "records": 153,
+      "sha256": "60665f8b3934a90e0efee9be00ca0587756df8d6da04a7561e250015130aac79"
+    },
+    {
+      "file": "attempts.part-0006.jsonl",
+      "bytes": 8339328,
+      "records": 156,
+      "sha256": "59af9f57e6ec0bf76771708b3110159ec047006a3cb7ee0840619a59de01f258"
+    },
+    {
+      "file": "attempts.part-0007.jsonl",
+      "bytes": 1854050,
+      "records": 33,
+      "sha256": "81095822ccba70465247395c2f019787d14bcf0602cb4d477669865f69bfd9c3"
+    }
+  ]
+}

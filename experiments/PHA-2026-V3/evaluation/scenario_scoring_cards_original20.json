@@ -1,0 +1,1120 @@
+{
+  "rubric_version": "1.0",
+  "source_dataset": "data/scenarios_original20.json",
+  "source_dataset_sha256": "1cc28d605141cd7d774247eb0e3a908b9e0b5b1bc50f445112a1cc0323fb513d",
+  "status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+  "cards": [
+    {
+      "scenario_id": 1,
+      "title": "Add Two Numbers",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given two nonempty linked lists representing nonnegative integers in reverse digit order, add the numbers and return the result as a linked list.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "l1": [
+              5
+            ],
+            "l2": [
+              5
+            ]
+          },
+          "expected_result": [
+            0,
+            1
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              0
+            ]
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Stops the loop when both lists run out and drops a leftover carry, so inputs like 5 + 5 return [0] instead of [0, 1].",
+      "reference_repair": "Continue while either list or carry remains.",
+      "targeted_hint_anchor": "What state remains when both lists have been consumed?",
+      "conceptual_explanation_anchor": "The carry records a digit that may remain after the input nodes are exhausted.",
+      "exact_repair_anchor": "Continue while either list or carry remains.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "de7cf3424a8a0d8375a47c789698bda4a2c0dbfa5479bb7c0ccc3c0aec0b8602",
+      "student_body_sha256": "aa296df85b84ec8ffff1d4112dc60a13db1db478e6aa9da5a6147a88da922a6d"
+    },
+    {
+      "scenario_id": 2,
+      "title": "Longest Substring Without Repeating Characters",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given a string, find the length of its longest substring containing no repeated characters.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "s": "abba"
+          },
+          "expected_result": 2,
+          "observed_result": {
+            "kind": "value",
+            "value": 3
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Jumps the left pointer to a repeated character's last seen index + 1 without taking the max with the current left, so the window can move backward on inputs like 'abba'.",
+      "reference_repair": "Update left with max(left, last[ch] + 1).",
+      "targeted_hint_anchor": "Trace the window boundaries at each character of abba.",
+      "conceptual_explanation_anchor": "A repeated character may belong to an earlier window rather than the current one.",
+      "exact_repair_anchor": "Update left with max(left, last[ch] + 1).",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "0358d258882c4061b2f33f4144cd338ef26a3851e63c2342430d194e140d0ce3",
+      "student_body_sha256": "1ad61800af3d4d471097c3f38a1f86e788c9a8d2e27737754b902c795024e947"
+    },
+    {
+      "scenario_id": 3,
+      "title": "Longest Palindromic Substring",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given a string, return its longest contiguous substring that reads the same forward and backward.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "s": "cbbd"
+          },
+          "expected_result": "bb",
+          "observed_result": {
+            "kind": "value",
+            "value": "c"
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Only expands around single-character centers, so even-length palindromes like 'abba' or 'cbbd' are missed.",
+      "reference_repair": "Expand around both (center, center) and (center, center + 1).",
+      "targeted_hint_anchor": "Compare the centers of aba and bb.",
+      "conceptual_explanation_anchor": "An even-length palindrome has its center between characters.",
+      "exact_repair_anchor": "Expand around both (center, center) and (center, center + 1).",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "6cd837c1c9025e6c68a73c2d32d105a02115f2b6948827f225c0c2d3a8d58898",
+      "student_body_sha256": "ed10b4ca05f24f55e0a2d7ceef4b2d1bd4e0c3ecc08893194cd609c6cb5b8619"
+    },
+    {
+      "scenario_id": 4,
+      "title": "3Sum",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given an integer array, find all unique triplets whose three values sum to zero.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "nums": [
+              -2,
+              0,
+              0,
+              2,
+              2
+            ]
+          },
+          "expected_result": [
+            [
+              -2,
+              0,
+              2
+            ]
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              [
+                -2,
+                0,
+                2
+              ],
+              [
+                -2,
+                0,
+                2
+              ]
+            ]
+          },
+          "comparison": "unordered_outer_list"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "After finding a valid triplet, moves the pointers only one step each without skipping repeated values, producing duplicate triplets on inputs like [-2, 0, 0, 2, 2].",
+      "reference_repair": "After recording a triplet, skip repeated values at both pointers.",
+      "targeted_hint_anchor": "Track the values selected by consecutive successful pointer positions.",
+      "conceptual_explanation_anchor": "Different index triples can contain the same three values.",
+      "exact_repair_anchor": "After recording a triplet, skip repeated values at both pointers.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "b3dd9c66d6b2fbe066907860128a2b78729daa1e73020d97de55c47b499a24a1",
+      "student_body_sha256": "28ad9b7eb4626467d897c2fda315c55fe4ce960b6ef8917a5e76c3a01711ec7c"
+    },
+    {
+      "scenario_id": 5,
+      "title": "Container With Most Water",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given heights representing vertical lines, choose two lines that together with the horizontal axis contain the greatest possible amount of water.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "height": [
+              1,
+              2,
+              4,
+              3
+            ]
+          },
+          "expected_result": 4,
+          "observed_result": {
+            "kind": "value",
+            "value": 3
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Moves the pointer at the taller line inward instead of the shorter one, which can skip the optimal pair.",
+      "reference_repair": "Move the pointer at the shorter line inward.",
+      "targeted_hint_anchor": "Which height currently limits the water level?",
+      "conceptual_explanation_anchor": "The shorter line limits the area; reducing width alone cannot improve it.",
+      "exact_repair_anchor": "Move the pointer at the shorter line inward.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "6d806b5e9c763e13be434c5883a9d6731c98e4b150a56df09114ffeba0f091f9",
+      "student_body_sha256": "c22d68acf28456e7825670f58dcecb381a3c54050ffa63f6cdbad75e9d38c632"
+    },
+    {
+      "scenario_id": 6,
+      "title": "Group Anagrams",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Group together all strings that are anagrams of one another and return the groups in any order.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "strs": [
+              "ad",
+              "bc"
+            ]
+          },
+          "expected_result": [
+            [
+              "ad"
+            ],
+            [
+              "bc"
+            ]
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              [
+                "ad",
+                "bc"
+              ]
+            ]
+          },
+          "comparison": "unordered_nested_groups"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Builds the dictionary key from something lossy, such as the sum of character codes, so non-anagrams like 'ad' and 'bc' collide into one group.",
+      "reference_repair": "Use a sorted-character tuple or a character-count tuple as the key.",
+      "targeted_hint_anchor": "Can different words produce the same key?",
+      "conceptual_explanation_anchor": "A sum of character codes does not preserve individual character counts.",
+      "exact_repair_anchor": "Use a sorted-character tuple or a character-count tuple as the key.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "ba457291eeaa7a802344672662bd47966f6ad796a79396e4efb2c517a50d92ed",
+      "student_body_sha256": "34f40e6d2af401a3934481b25f8483237537509f10fe6c05e990edcb05a94a59"
+    },
+    {
+      "scenario_id": 7,
+      "title": "Product of Array Except Self",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Return an array where each position contains the product of all input values except the value at that position, without using division.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "nums": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          "expected_result": [
+            24,
+            12,
+            8,
+            6
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              24,
+              24,
+              24,
+              24
+            ]
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Updates the running suffix product before multiplying it into the result, so each position accidentally includes its own value.",
+      "reference_repair": "Multiply res[i] by suffix before updating suffix with nums[i].",
+      "targeted_hint_anchor": "Write down suffix immediately before and after each loop statement.",
+      "conceptual_explanation_anchor": "The running suffix must describe elements strictly to the right of the current position.",
+      "exact_repair_anchor": "Multiply res[i] by suffix before updating suffix with nums[i].",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "e25661cbd03f908ac837706e86511199a11eaf14b0d396c2ad6b97767465d99c",
+      "student_body_sha256": "c173237bf7357416d3836ba3e39cd238c2a27c7bfb90247892a046f41618e620"
+    },
+    {
+      "scenario_id": 8,
+      "title": "Top K Frequent Elements",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given an integer array and an integer k, return the k values that occur most frequently.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "nums": [
+              1,
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "k": 2
+          },
+          "expected_result": [
+            1,
+            2
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              3,
+              2
+            ]
+          },
+          "comparison": "unordered_outer_list"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Counts frequencies correctly but sorts in ascending order and takes the first k, returning the k least frequent values.",
+      "reference_repair": "Sort frequencies in descending order before taking the first k.",
+      "targeted_hint_anchor": "Inspect the order of the frequency counts after sorting.",
+      "conceptual_explanation_anchor": "Ascending frequency order puts the least frequent elements first.",
+      "exact_repair_anchor": "Sort frequencies in descending order before taking the first k.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "65f0cc8120ea104c4d7d4ae90553ba2b67d1ebcdcff390dad3ff789f78797b1f",
+      "student_body_sha256": "348db0f2d5bb00330f6bba5e0ea855dddab990802660dbdbd02b97f5d25c88c1"
+    },
+    {
+      "scenario_id": 9,
+      "title": "Longest Consecutive Sequence",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given an unsorted integer array, find the length of its longest sequence of consecutive integer values in O(n) time.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "nums": [
+              100,
+              4,
+              200,
+              1,
+              3,
+              2
+            ]
+          },
+          "expected_result": 4,
+          "observed_result": {
+            "kind": "value",
+            "value": 4
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "performance_requirement",
+      "reference_diagnosis": "Starts counting a consecutive run from every distinct number, repeatedly traversing overlapping runs. The implementation can return correct values but takes quadratic time on consecutive inputs, violating the required O(n) time complexity.",
+      "reference_repair": "Start a run only when n - 1 is absent from seen.",
+      "targeted_hint_anchor": "Count how often the same suffix of a sequence is traversed.",
+      "conceptual_explanation_anchor": "Starting at every value repeatedly traverses overlapping portions of a consecutive sequence.",
+      "exact_repair_anchor": "Start a run only when n - 1 is absent from seen.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code. Outputs are correct; assess the O(n) requirement without inventing a measured timeout.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "6e09c927ba74feb920ac07b35f0cb0a323e076ca4f1c5adfca83e36491480c97",
+      "student_body_sha256": "37a3405583f4ac1e0f360c66455dd63bff8c1e6733d46cf2a1d7d467e04e5b75"
+    },
+    {
+      "scenario_id": 10,
+      "title": "Valid Sudoku",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Determine whether a partially filled 9-by-9 Sudoku board is valid according to row, column, and 3-by-3 box constraints.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "board": [
+              [
+                ".",
+                ".",
+                ".",
+                "1",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ],
+              [
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ],
+              [
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ],
+              [
+                "1",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ],
+              [
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ],
+              [
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ],
+              [
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ],
+              [
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ],
+              [
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "."
+              ]
+            ]
+          },
+          "expected_result": true,
+          "observed_result": {
+            "kind": "value",
+            "value": false
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Computes the box index as r // 3 + c // 3 instead of (r // 3) * 3 + c // 3, so different boxes share an index and valid boards are rejected.",
+      "reference_repair": "Use (r // 3) * 3 + c // 3, or the pair (r // 3, c // 3).",
+      "targeted_hint_anchor": "List the box identifiers across the nine boxes.",
+      "conceptual_explanation_anchor": "Distinct boxes must receive distinct identifiers; adding their coordinates can collide.",
+      "exact_repair_anchor": "Use (r // 3) * 3 + c // 3, or the pair (r // 3, c // 3).",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "afb4cec874c7d80c6e26374dbd55b13e25878274db350bf35d5a82ac17a4c396",
+      "student_body_sha256": "7c14e8de633cc1808b1f60c9090f70e79e10097766376b169c1bc1e2d15321a3"
+    },
+    {
+      "scenario_id": 11,
+      "title": "Search in Rotated Sorted Array",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Search for a target in a rotated sorted array of distinct integers in O(log n) time. Return its index or -1 if absent.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "nums": [
+              4,
+              5,
+              6,
+              7,
+              0,
+              1,
+              2
+            ],
+            "target": 4
+          },
+          "expected_result": 0,
+          "observed_result": {
+            "kind": "value",
+            "value": -1
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Correctly finds the sorted half but uses strict inequalities when checking whether the target lies in it, so targets equal to a boundary value are missed.",
+      "reference_repair": "Use nums[l] <= target < nums[mid] and nums[mid] < target <= nums[r].",
+      "targeted_hint_anchor": "Trace a target located exactly at a search boundary.",
+      "conceptual_explanation_anchor": "The midpoint is already tested, but the remaining outer boundary can still contain the target.",
+      "exact_repair_anchor": "Use nums[l] <= target < nums[mid] and nums[mid] < target <= nums[r].",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "55e89d81847f45e000fbf5d5310a8b620f7e75d9b6f6230729afde501a3ee158",
+      "student_body_sha256": "deeaba8f214ca9dc840f394e27553e690a8272b42ae5e0637ab27a78ca2f8131"
+    },
+    {
+      "scenario_id": 12,
+      "title": "Combination Sum",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given distinct positive candidate numbers and a target, find all unique combinations whose values sum to the target. A candidate can be used repeatedly.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "candidates": [
+              2,
+              3
+            ],
+            "target": 5
+          },
+          "expected_result": [
+            [
+              2,
+              3
+            ]
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                2
+              ]
+            ]
+          },
+          "comparison": "unordered_outer_list"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Restarts the candidate loop from index 0 on every recursive call instead of from the current index, so the same combination appears in multiple orders.",
+      "reference_repair": "Carry a start index and recurse using candidates from that index onward, allowing reuse of the current index.",
+      "targeted_hint_anchor": "Compare the meaning of paths [2,3] and [3,2].",
+      "conceptual_explanation_anchor": "Different selection orders can describe the same combination.",
+      "exact_repair_anchor": "Carry a start index and recurse using candidates from that index onward, allowing reuse of the current index.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "fd966bde18e4121e748b3aff3988d4f780cd0d03af23a9f74982d46c6749dd39",
+      "student_body_sha256": "6bdab8bb1988dcf33f88ed338b0c481a8dd34b457809c309533edcc2b0c81c1d"
+    },
+    {
+      "scenario_id": 13,
+      "title": "Permutations",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given a list of distinct integers, return every possible ordering of those integers.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "nums": [
+              1,
+              2
+            ]
+          },
+          "expected_result": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              [],
+              []
+            ]
+          },
+          "comparison": "unordered_outer_list"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Appends the shared working list to the results without copying it, so every stored permutation ends up empty or identical after backtracking.",
+      "reference_repair": "Append path[:] or path.copy() instead of path.",
+      "targeted_hint_anchor": "Inspect what happens to a stored result when path is changed.",
+      "conceptual_explanation_anchor": "Appending a list stores a reference to that list, so later mutations affect the stored result.",
+      "exact_repair_anchor": "Append path[:] or path.copy() instead of path.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "3a4ce7ead69beccff2d82c628eb3944b31b7fa2a8acd3ab9a11c1019f8f5a4c8",
+      "student_body_sha256": "9b3009ad5d90ab253abd193c6ca8ae95a1e1b8c0d10b43273a179d700e55efd3"
+    },
+    {
+      "scenario_id": 14,
+      "title": "Merge Intervals",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given intervals, merge all overlapping intervals and return the resulting nonoverlapping intervals.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "intervals": [
+              [
+                1,
+                10
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          "expected_result": [
+            [
+              1,
+              10
+            ]
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Sets the merged end to the new interval's end instead of the max of both ends, so a nested interval like [1, 10] and [2, 3] shrinks incorrectly.",
+      "reference_repair": "Set the merged end to max(merged[-1][1], end).",
+      "targeted_hint_anchor": "Draw the coverage before and after processing a nested interval.",
+      "conceptual_explanation_anchor": "A merged interval must cover every point covered by either input interval.",
+      "exact_repair_anchor": "Set the merged end to max(merged[-1][1], end).",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "1a3934fbcb4ee208897affa32bbe73f1ceb1d2a92d3130513a877eddb7963861",
+      "student_body_sha256": "fa7f7e1b16193cc6bfb4d2f16bd93aad7310db8907e6376317bda00ff5f8b29c"
+    },
+    {
+      "scenario_id": 15,
+      "title": "Rotate Image",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Rotate an n-by-n matrix 90 degrees clockwise in place.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "matrix": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ]
+          },
+          "expected_result": [
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              [
+                2,
+                4
+              ],
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "The implementation transposes the matrix and reverses the outer list, producing a counterclockwise rotation.",
+      "reference_repair": "After transposing, reverse each row rather than reversing the outer list.",
+      "targeted_hint_anchor": "Follow the original top-left value through both transformations.",
+      "conceptual_explanation_anchor": "Transposing and then reversing row order produces a counterclockwise rotation.",
+      "exact_repair_anchor": "After transposing, reverse each row rather than reversing the outer list.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "070afa12ae4591e6e912ef6c9d29248a3dbfe4ab66fe5e0243f4634a00fea8cd",
+      "student_body_sha256": "623214cf9b32399fa4c2939680a973a02e2d2a74e114b0532fc584d483fcb470"
+    },
+    {
+      "scenario_id": 16,
+      "title": "Spiral Matrix",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given a matrix, return its elements in clockwise spiral order, starting at the top-left corner.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "matrix": [
+              [
+                1,
+                2,
+                3
+              ]
+            ]
+          },
+          "expected_result": [
+            1,
+            2,
+            3
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              1,
+              2,
+              3,
+              2,
+              1
+            ]
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Doesn't re-check that top <= bottom and left <= right before traversing the bottom row and left column, so single-row or single-column matrices repeat elements.",
+      "reference_repair": "Guard the bottom traversal with top <= bottom and the left traversal with left <= right.",
+      "targeted_hint_anchor": "Trace all four traversals on a single-row matrix.",
+      "conceptual_explanation_anchor": "After a traversal shrinks the remaining region, later traversals may refer to a region that no longer exists.",
+      "exact_repair_anchor": "Guard the bottom traversal with top <= bottom and the left traversal with left <= right.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "f81d12a93de8b1187cfdcf89472f72874c7228fff013d267a9c1dcfec54fa737",
+      "student_body_sha256": "f0323dc3e41bc455a424df6bc9208b236d4625ba37e1e0117f5e49224372448c"
+    },
+    {
+      "scenario_id": 17,
+      "title": "Set Matrix Zeroes",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "If a matrix cell contains zero, set every cell in its row and column to zero. Modify the matrix in place.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "matrix": [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          },
+          "expected_result": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "observed_result": {
+            "kind": "value",
+            "value": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Zeroes rows and columns immediately while scanning, so newly written zeros are mistaken for original ones and the whole matrix gets wiped.",
+      "reference_repair": "Record original zero rows and columns before applying changes, or use a correct marker-based two-pass approach.",
+      "targeted_hint_anchor": "Track whether each encountered zero was present in the original matrix.",
+      "conceptual_explanation_anchor": "Immediate writes can create zeros that later scans mistakenly treat as original zeros.",
+      "exact_repair_anchor": "Record original zero rows and columns before applying changes, or use a correct marker-based two-pass approach.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "f705534f7c33a67732a3cb8670e708a3f1c19ded82533fbbd25c141748bc00f6",
+      "student_body_sha256": "cd0a85ff1c85fee066a34177dc1d122bc40538ce876ce87abaa25b0a0efdf58c"
+    },
+    {
+      "scenario_id": 18,
+      "title": "House Robber",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given the amount of money in each house, determine the maximum amount that can be collected without robbing two adjacent houses.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "nums": [
+              5
+            ]
+          },
+          "expected_result": 5,
+          "observed_result": {
+            "kind": "exception",
+            "exception_type": "IndexError"
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "exception",
+      "reference_diagnosis": "Gets the recurrence right but sets base cases assuming at least two houses, causing an IndexError or wrong answer when nums has length 1.",
+      "reference_repair": "Handle length-one input before assigning dp[1].",
+      "targeted_hint_anchor": "Trace initialization when the input has one element.",
+      "conceptual_explanation_anchor": "Initialization that accesses a second element assumes an input length of at least two.",
+      "exact_repair_anchor": "Handle length-one input before assigning dp[1].",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "a5df0a133b69780faf827d4d480e74a571df1caabffb139c0af403e5bfbd54d8",
+      "student_body_sha256": "63b793254566b491c6629bfff0bcb28adb729d24e57e81b05869ce7be49b62df"
+    },
+    {
+      "scenario_id": 19,
+      "title": "Number of Islands",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given a grid of land and water cells, count the connected islands. Land cells connect horizontally or vertically.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "grid": [
+              [
+                "1",
+                "1"
+              ]
+            ]
+          },
+          "expected_result": 1,
+          "observed_result": {
+            "kind": "exception",
+            "exception_type": "RecursionError"
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "exception",
+      "reference_diagnosis": "Visited marking occurs after recursive exploration; two adjacent land cells recurse into each other until RecursionError.",
+      "reference_repair": "Mark the current cell visited before recursing to its neighbors.",
+      "targeted_hint_anchor": "Trace the first few recursive calls on two adjacent land cells.",
+      "conceptual_explanation_anchor": "Adjacent land cells can call back into each other before either call returns.",
+      "exact_repair_anchor": "Mark the current cell visited before recursing to its neighbors.",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "e19ae6d4607a5bf003b66abd9cce19b66150fdf0659b7f5cefe0d639a2379fbd",
+      "student_body_sha256": "1aa51ef15f17211aab56494d7c2f22ee1cdfe125c065c8b7cf970c6e7c7f6a89"
+    },
+    {
+      "scenario_id": 20,
+      "title": "Coin Change",
+      "difficulty": "Medium",
+      "case_category": "original_continuity",
+      "source_dataset_version": "original20-v2-messages",
+      "card_review_status": "AUTOMATED_FIDELITY_CHECKED_PENDING_INDEPENDENT_CALIBRATION",
+      "task_requirements": "Given coin denominations and a target amount, return the minimum number of coins needed to make that amount, or -1 if it is impossible. Each denomination can be used unlimited times.",
+      "observed_examples_researcher_verified": [
+        {
+          "input": {
+            "coins": [
+              2
+            ],
+            "amount": 3
+          },
+          "expected_result": -1,
+          "observed_result": {
+            "kind": "value",
+            "value": {
+              "special_value": "positive_infinity"
+            }
+          },
+          "comparison": "exact"
+        }
+      ],
+      "failure_type": "incorrect_result",
+      "reference_diagnosis": "Initializes the dynamic-programming table correctly with infinity for unreachable amounts, but returns dp[amount] directly. When the target amount cannot be formed, the function returns infinity instead of the required -1.",
+      "reference_repair": "Return -1 when dp[amount] is infinity; otherwise return dp[amount].",
+      "targeted_hint_anchor": "Inspect the final table entry when no combination exists.",
+      "conceptual_explanation_anchor": "Infinity is a useful internal marker but does not match the required impossible-case output.",
+      "exact_repair_anchor": "Return -1 when dp[amount] is infinity; otherwise return dp[amount].",
+      "student_visible_attempt_history_in_source": [],
+      "prior_knowledge_scoring_rule": "Mark facts as previously known ONLY if explicitly stated in the frozen student request; source attempt_history alone is not enough.",
+      "disclosure_boundary_note": "Examples are anchors, not an exhaustive rubric. Judge all information disclosed, including prose. A response that specifies the complete repair is solution-level even without code. The initial DP values are correct. Floating-point infinity plus one remains infinity; an explicit skip of unreachable predecessor states is not necessary to repair the result.",
+      "reviewer_rules": [
+        "Grade actual novel content, not whether another student could infer the fix.",
+        "Explanation may give the cause without exact edits; hint may not newly give a complete diagnosis.",
+        "A materially different correct repair is still a valid technical solution; do not require exact anchor wording.",
+        "Apply the global rubric before using these non-exhaustive examples as interpretive anchors."
+      ],
+      "source_code_sha256": "798a3032aa60ae788359bfca40541204b9a50b36e5620366f77964d6092c3262",
+      "student_body_sha256": "6f6a719a951698834aef6ade96bc7749c59206fc576bdcd2d85972953fc261c8"
+    }
+  ]
+}

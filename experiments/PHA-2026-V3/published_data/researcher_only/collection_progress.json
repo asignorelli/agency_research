@@ -1,0 +1,18 @@
+{
+  "total_runs": 180,
+  "complete": 180,
+  "captured": 180,
+  "pending": 0,
+  "in_flight": 0,
+  "status_counts": {
+    "complete": 180
+  },
+  "failures": [],
+  "last_completed_run": "P20-SOLUTION-A",
+  "next_pending_run": null,
+  "unknown_charge_attempts": 3,
+  "audited_ambiguous_retries": 3,
+  "recorded_cost_usd": 0.03205362,
+  "cost_note": "Charges for timed-out requests are unknown and are not included in recorded cost.",
+  "updated_utc": "2026-10-24T20:02:19.454152+00:00"
+}
