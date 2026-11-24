@@ -12,7 +12,10 @@
 --     An annotator can read back only their own records. A separate
 --     coordinator code is needed to export everyone's records.
 --
--- After running this file, run (with your own codes, never committed to git):
+-- After running this file, create everyone's codes in a new query. The result
+-- shows each random code once; copy them (only hashes are stored):
+--   select * from pha_private.issue_codes('[["human-alyssa","Alyssa"],["human-tommy","Tommy"]]');
+-- Or choose codes yourself (never commit them to git):
 --   select pha_private.add_annotator('human-alyssa', 'Alyssa', 'their-access-code');
 --   select pha_private.set_coordinator_code('a-long-coordinator-code');
 
@@ -112,6 +115,30 @@ begin
     raise exception 'Unknown annotator or wrong access code' using errcode = 'P0001';
   end if;
   return v_name;
+end $$;
+
+-- A random, readable code such as 'k7m2-q9xa-4tpw' (48 random bits from gen_random_uuid).
+create or replace function pha_private.new_code() returns text
+language sql volatile set search_path = '' as $$
+  select string_agg(substr(x.h, i, 4), '-' order by i)
+    from (select replace(gen_random_uuid()::text, '-', '') as h) x, generate_series(1, 9, 4) i;
+$$;
+
+-- Create (or reset) every annotator with a fresh random code, plus a new coordinator
+-- code, and show the codes once. Only hashes are stored, so copy them from the result.
+--   select * from pha_private.issue_codes('[["human-alyssa","Alyssa"],["human-tommy","Tommy"]]');
+create or replace function pha_private.issue_codes(p_annotators jsonb)
+returns table (who text, access_code text) language plpgsql set search_path = '' as $$
+declare a jsonb; v_code text;
+begin
+  for a in select value from jsonb_array_elements(p_annotators) loop
+    v_code := pha_private.new_code();
+    perform pha_private.add_annotator(a->>0, a->>1, v_code);
+    who := a->>0; access_code := v_code; return next;
+  end loop;
+  v_code := pha_private.new_code() || '-' || pha_private.new_code();
+  perform pha_private.set_coordinator_code(v_code);
+  who := 'coordinator'; access_code := v_code; return next;
 end $$;
 
 revoke all on all functions in schema pha_private from public, anon, authenticated;

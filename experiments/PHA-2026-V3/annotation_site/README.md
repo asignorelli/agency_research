@@ -37,24 +37,27 @@ tutorial, then grade the 180 condition-blind responses one at a time.
 
 ## Coordinator setup (one time, about 10 minutes)
 
+**Status:** steps 1 and 2 are done. The database is the Supabase project "Agency Project"
+(`mlukkrctswzdaysxlhnf`), set up on 2026-11-24, and `config.js` points to it. Only step 3
+(GitHub Pages) remains. The steps below are kept for rebuilding or moving the database.
+
 ### 1. Create the database (Supabase, free tier)
 
 1. Create a project at https://supabase.com (any name and region; the free plan is enough).
 2. Open **SQL Editor → New query**, paste the whole of [`supabase/setup.sql`](supabase/setup.sql),
    and click **Run**.
-3. In a new query, add each annotator with their own access code, and set a separate
-   coordinator code for exports. **Choose your own codes, and don't commit them to git.**
+3. In a new query, create random access codes for every annotator plus a coordinator
+   code for exports. The result table shows each code **once** (only hashes are stored),
+   so copy them somewhere safe and send each person their own. Never commit them to git.
 
    ```sql
-   select pha_private.add_annotator('human-tommy',  'Tommy',  'code-for-tommy');
-   select pha_private.add_annotator('human-alyssa', 'Alyssa', 'code-for-alyssa');
-   select pha_private.add_annotator('human-ruoyu',  'Ruoyu',  'code-for-ruoyu');
-   select pha_private.add_annotator('human-feyza',  'Feyza',  'code-for-feyza');
-   select pha_private.set_coordinator_code('a-long-coordinator-only-code');
+   select * from pha_private.issue_codes('[["human-tommy","Tommy"],["human-alyssa","Alyssa"],["human-ruoyu","Ruoyu"],["human-feyza","Feyza"]]');
    ```
 
-   Running `add_annotator` again for the same person resets their code without touching
-   their saved work.
+   To reset one person's code later without touching their saved work, run
+   `select * from pha_private.issue_codes('[["human-alyssa","Alyssa"]]');`. Note that this
+   also issues a new coordinator code. Or choose a code yourself with
+   `select pha_private.add_annotator('human-alyssa', 'Alyssa', 'their-code');`.
 4. Under **Project Settings → API** (or **Connect**), copy the **Project URL** and the
    **publishable** key (older projects call it the `anon` `public` key).
 
