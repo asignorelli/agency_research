@@ -7,5 +7,13 @@
  "practice_exercises_sha256": "63c2f73a3e389134e413b702f915a10d4471c1b8a843ba246c24cd9bef03a44f",
  "practice_key_sha256": "5586d507c060b6c027f9a04599f2d0eb6dc167866cfadd050a9ca557591f0850",
  "items": 180,
- "annotators": 4
+ "annotators": 4,
+ "reviews_per_item": 2,
+ "assignment_seed": "PHA-2026-V3:human-v1:assignment",
+ "items_per_annotator": {
+  "human-tommy": 90,
+  "human-alyssa": 90,
+  "human-ruoyu": 90,
+  "human-feyza": 90
+ }
 }

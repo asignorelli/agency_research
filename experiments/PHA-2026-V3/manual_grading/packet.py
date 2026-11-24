@@ -151,7 +151,7 @@ def compile_submission(records, items, rater):
     if any(not isinstance(bid, str) for bid in ids) or len(set(ids)) != len(ids):
         raise ValueError('Missing or duplicate blind ID in human ratings')
     if set(ids) != set(expected):
-        raise ValueError('Submission must contain exactly one completed review for every captured response')
+        raise ValueError('Submission must contain exactly one completed review for every assigned captured response')
     result = []
     config = get_config(ROOT / 'config.json')
     for original in records:
@@ -168,17 +168,31 @@ def compile_submission(records, items, rater):
     return result
 
 
-def check(rater, file, out):
+def assigned_items(items, assigned):
+    """Limit the queue to one person's assigned share (a JSON array of blind IDs)."""
+    if assigned is None:
+        return items
+    ids = json.loads(Path(assigned).read_text(encoding='utf-8'))
+    by_id = {item['blind_id']: item for item in items}
+    if (not isinstance(ids, list) or not ids or len(set(ids)) != len(ids)
+            or not all(isinstance(bid, str) and bid in by_id for bid in ids)):
+        raise ValueError('Assigned items must be a nonempty JSON array of distinct captured blind IDs')
+    return [by_id[bid] for bid in ids]
+
+
+def check(rater, file, out, assigned=None):
     file, out = Path(file), Path(out)
     receipt = out.with_name(out.name + '.metadata.json')
     if out.exists() or receipt.exists():
         raise FileExistsError('Submission or receipt already exists; preserve the original and choose a new path')
     text = file.read_text(encoding='utf-8')
     records = json.loads(text) if text.lstrip().startswith('[') else [json.loads(line) for line in text.splitlines() if line.strip()]
-    grades = compile_submission(records, load_queue(), rater)
+    queue = assigned_items(load_queue(), assigned)
+    grades = compile_submission(records, queue, rater)
     encoded = ''.join(json.dumps(grade, ensure_ascii=False, separators=(',', ':')) + '\n' for grade in grades)
     metadata = {'study_id': 'PHA-2026-V3', 'rater_identifier': rater, 'rater_type': 'human',
                 'rubric_version': '1.0', 'submitted_utc': timestamp(), 'records': len(grades),
+                'assigned_items_sha256': digest(assigned) if assigned is not None else None,
                 'source_ratings_sha256': digest(file),
                 'submission_sha256': hashlib.sha256(encoded.encode('utf-8')).hexdigest(),
                 'rubric_sha256': digest(RUBRIC), 'schema_sha256': digest(SCHEMA),
@@ -201,9 +215,13 @@ def main():
     check_parser.add_argument('--rater', required=True)
     check_parser.add_argument('--file', type=Path, required=True)
     check_parser.add_argument('--out', type=Path, required=True)
+    check_parser.add_argument('--assigned', type=Path,
+                              help='JSON array of the blind IDs assigned to this person, when each person '
+                                   'grades only a share of the 180 (the annotation site export writes it)')
     args = parser.parse_args()
     try:
-        count = prepare(args.rater, args.out) if args.command == 'prepare' else check(args.rater, args.file, args.out)
+        count = (prepare(args.rater, args.out) if args.command == 'prepare'
+                 else check(args.rater, args.file, args.out, args.assigned))
     except Exception as error:
         parser.exit(1, f'ERROR: {error}\n')
     print(f'{count} human review records: ' + ('blank packet prepared' if args.command == 'prepare' else 'validated; submission and receipt saved'))

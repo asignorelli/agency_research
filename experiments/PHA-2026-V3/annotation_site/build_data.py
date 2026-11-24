@@ -4,13 +4,17 @@ Run from anywhere:  python3 experiments/PHA-2026-V3/annotation_site/build_data.p
 
 Reads only the condition-blind queue, the human grading kit, and the practice
 key. It never opens the SQLite database, condition mappings, or automated grades.
-Per-annotator presentation orders come from manual_grading/packet.py, so the
-website shows each person the same order `packet.py prepare` would give them.
+Each response is assigned to exactly REVIEWS_PER_ITEM annotators, spread evenly
+over every pair of annotators (with 4 people: 6 pairs x 30 responses, so 90 each).
+Each person's presentation order then comes from manual_grading/packet.py's
+shuffle, which keeps identical student requests apart.
 """
 from __future__ import annotations
 
 import hashlib
+import itertools
 import json
+import random
 import re
 import sys
 from pathlib import Path
@@ -34,6 +38,10 @@ ANNOTATORS = [
     {'rater_identifier': 'human-ruoyu', 'display_name': 'Ruoyu'},
     {'rater_identifier': 'human-feyza', 'display_name': 'Feyza'},
 ]
+
+# The protocol needs two independent human reviews of every response.
+REVIEWS_PER_ITEM = 2
+ASSIGNMENT_SEED = 'PHA-2026-V3:human-v1:assignment'
 
 
 def sha(path):
@@ -142,15 +150,50 @@ def parse_practice():
     return cases
 
 
+def assign(items, raters):
+    """Give every item to REVIEWS_PER_ITEM raters, balanced across rater groups.
+
+    Items are grouped by requested level and then by student request, so each group
+    of raters gets the same number of hint, explanation and solution requests, and
+    the responses to one student request go to different groups of raters.
+    """
+    groups = list(itertools.combinations(raters, REVIEWS_PER_ITEM))
+    rng = random.Random(ASSIGNMENT_SEED)
+    by_request = {}
+    for item in sorted(items, key=lambda item: item['blind_id']):
+        by_request.setdefault((item['requested_level'], item['student_request']), []).append(item)
+    sequence = []
+    for level in sorted({level for level, _ in by_request}):
+        requests = sorted(request for request in by_request if request[0] == level)
+        rng.shuffle(requests)
+        for request in requests:
+            batch = by_request[request][:]
+            rng.shuffle(batch)
+            sequence.extend(batch)
+    assigned = {rater: [] for rater in raters}
+    for index, item in enumerate(sequence):
+        for rater in groups[index % len(groups)]:
+            assigned[rater].append(item)
+    return assigned
+
+
 def main():
     OUT.mkdir(exist_ok=True)
     items = packet.load_queue()
     by_id = {item['blind_id']: item for item in items}
-    orders = {}
-    for person in ANNOTATORS:
-        rater = packet.rater_identifier(person['rater_identifier'])
-        orders[rater] = [item['blind_id'] for item in packet.ordered_items(items, rater)]
-        assert sorted(orders[rater]) == sorted(by_id)
+    raters = [packet.rater_identifier(person['rater_identifier']) for person in ANNOTATORS]
+    if len(set(raters)) != len(raters) or len(raters) < REVIEWS_PER_ITEM:
+        raise ValueError(f'Need at least {REVIEWS_PER_ITEM} distinct annotators')
+    assigned = assign(items, raters)
+    orders = {rater: [item['blind_id'] for item in packet.ordered_items(assigned[rater], rater)]
+              for rater in raters}
+    reviews = {}
+    for rater, order in orders.items():
+        assert len(set(order)) == len(order)
+        for blind_id in order:
+            reviews.setdefault(blind_id, []).append(rater)
+    assert sorted(reviews) == sorted(by_id)
+    assert all(len(who) == REVIEWS_PER_ITEM for who in reviews.values())
     write('items.json', sorted(items, key=lambda item: item['blind_id']))
     write('orders.json', orders)
     write('annotators.json', ANNOTATORS)
@@ -160,8 +203,11 @@ def main():
         'study_id': 'PHA-2026-V3', 'rubric_version': '1.0',
         'blinded_source_sha256': sha(packet.QUEUE), 'rubric_sha256': sha(packet.RUBRIC),
         'schema_sha256': sha(packet.SCHEMA), 'practice_exercises_sha256': sha(EXERCISES),
-        'practice_key_sha256': sha(KEY), 'items': len(items), 'annotators': len(ANNOTATORS)})
-    print(f'Wrote {len(items)} items, {len(ANNOTATORS)} orders and 18 practice cases to {OUT}')
+        'practice_key_sha256': sha(KEY), 'items': len(items), 'annotators': len(ANNOTATORS),
+        'reviews_per_item': REVIEWS_PER_ITEM, 'assignment_seed': ASSIGNMENT_SEED,
+        'items_per_annotator': {rater: len(order) for rater, order in orders.items()}})
+    sizes = ', '.join(f'{rater} {len(order)}' for rater, order in orders.items())
+    print(f'Wrote {len(items)} items ({REVIEWS_PER_ITEM} reviews each: {sizes}) and 18 practice cases to {OUT}')
 
 
 if __name__ == '__main__':
