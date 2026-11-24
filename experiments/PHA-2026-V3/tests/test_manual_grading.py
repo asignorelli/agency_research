@@ -122,6 +122,46 @@ class HumanPacketTests(unittest.TestCase):
                 packet.check('human-test', source, out)
             self.assertEqual(before, out.read_bytes())
 
+    def test_assigned_share_checked_instead_of_whole_queue(self):
+        first, second = example('PRACTICE-0001'), example('PRACTICE-0002', request='Another request')
+        with tempfile.TemporaryDirectory() as temp, \
+                patch.object(packet, 'load_queue', return_value=[first, second]):
+            temp = Path(temp)
+            source, assigned = temp / 'ratings.json', temp / 'assigned.json'
+            source.write_text(json.dumps([finished(second)]))
+            with self.assertRaises(ValueError):  # without --assigned the whole queue is required
+                packet.check('human-test', source, temp / 'all.jsonl')
+            assigned.write_text(json.dumps(['PRACTICE-0002']))
+            self.assertEqual(1, packet.check('human-test', source, temp / 'share.jsonl', assigned))
+            receipt = json.loads((temp / 'share.jsonl.metadata.json').read_text())
+            self.assertEqual(packet.digest(assigned), receipt['assigned_items_sha256'])
+            for bad in (['PRACTICE-0001'], [], ['PRACTICE-0002', 'PRACTICE-0002'], ['UNKNOWN']):
+                assigned.write_text(json.dumps(bad))
+                with self.subTest(assigned=bad), self.assertRaises(ValueError):
+                    packet.check('human-test', source, temp / f'bad{len(bad)}.jsonl', assigned)
+
+    def test_annotation_site_gives_every_response_to_exactly_two_people(self):
+        import importlib.util
+        path = Path(packet.__file__).resolve().parents[1] / 'annotation_site/build_data.py'
+        spec = importlib.util.spec_from_file_location('build_data', path)
+        build = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(build)
+        items = packet.load_queue()
+        raters = [person['rater_identifier'] for person in build.ANNOTATORS]
+        assigned = build.assign(items, raters)
+        self.assertEqual(assigned, build.assign(items, raters))  # deterministic
+        counts = {}
+        for share in assigned.values():
+            for item in share:
+                counts[item['blind_id']] = counts.get(item['blind_id'], 0) + 1
+        self.assertEqual({item['blind_id'] for item in items}, set(counts))
+        self.assertEqual({build.REVIEWS_PER_ITEM}, set(counts.values()))
+        sizes = {len(share) for share in assigned.values()}
+        self.assertEqual({len(items) * build.REVIEWS_PER_ITEM // len(raters)}, sizes)
+        site_orders = json.loads((path.parent / 'data/orders.json').read_text(encoding='utf-8'))
+        for rater, share in assigned.items():
+            self.assertEqual(sorted(item['blind_id'] for item in share), sorted(site_orders[rater]))
+
 
 if __name__ == '__main__':
     unittest.main()

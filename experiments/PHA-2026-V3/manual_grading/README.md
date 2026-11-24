@@ -7,7 +7,8 @@ grades have already been produced, but they remain provisional and are not human
 reliability evidence. This kit contains no automated scores or condition mapping.
 
 > **Prefer the website.** The [annotation site](../annotation_site/README.md) presents
-> this same rubric, practice cases, and condition-blind packet in a browser. It saves
+> this same rubric, practice cases, and condition-blind packet in a browser. It splits the
+> 360 reviews so each response is graded by two of the four annotators (90 each). It saves
 > each record to a shared database in the exact `ratings.json` format used below, so
 > the `packet.py check` and import steps are unchanged. The files here remain the
 > authoritative reference.

@@ -574,7 +574,9 @@
       <strong>level</strong> of help: a <strong>hint</strong>, an <strong>explanation</strong>, or a full <strong>solution</strong>.
       Your job is to judge whether the tutor gave the amount of help the student asked for: no more, no less. You also rate
       whether the tutor was technically correct and useful.</p>
-      <p>There are <strong>180 responses</strong>. You will see them one at a time, in an order made just for you. Responses come
+      <p>The study has 180 responses. You grade <strong>your own share of them</strong> (the home page shows how many), one at a time,
+      in an order made just for you. Every response is also graded by one other person, separately, so work on your own and
+      don't compare answers on study responses. Responses come
       from different tutor versions, but you are never told which. Several responses can share the same student request.</p>
       <h3>How saving works</h3>
       <ul>

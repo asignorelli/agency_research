@@ -8,15 +8,17 @@ You will be asked for the coordinator code. It is never stored. The script write
 a new folder (it refuses to overwrite one) containing:
 
   events.jsonl                     every save, in order, exactly as stored (the audit trail)
-  <rater>/ratings_latest.json      each person's latest answer per response (180-record array)
-  <rater>/ratings_first.json       each person's first-pass answer per response
+  <rater>/ratings_latest.json      each person's latest answer per assigned response
+  <rater>/ratings_first.json       each person's first-pass answer per assigned response
+  <rater>/assigned_items.json      the blind IDs assigned to that person, in their order
   <rater>/practice_latest.json     practice answers (not study data)
   summary.json                     counts, hashes and export time
 
 A complete ratings file can then go through the existing checker and import:
 
     .venv/bin/python manual_grading/packet.py check --rater human-alyssa \
-        --file <export>/human-alyssa/ratings_latest.json --out workspace/human-alyssa-submission.jsonl
+        --file <export>/human-alyssa/ratings_latest.json \
+        --assigned <export>/human-alyssa/assigned_items.json --out workspace/human-alyssa-submission.jsonl
 """
 from __future__ import annotations
 
@@ -112,13 +114,18 @@ def main():
         first = [sorted(main[i], key=lambda e: e['revision'])[0]['record'] for i in order if i in main]
         latest = [sorted(main[i], key=lambda e: e['revision'])[-1]['record'] for i in order if i in main]
         revised = sum(1 for versions in main.values() if len(versions) > 1)
+        if mine or rater in orders:
+            dump(out / rater / 'assigned_items.json', order)
         if mine:
             dump(out / rater / 'ratings_first.json', first)
             dump(out / rater / 'ratings_latest.json', latest)
             dump(out / rater / 'practice_latest.json', [practice[k]['record'] for k in sorted(practice)])
-        summary['raters'][rater] = {'responses_saved': len(main), 'responses_expected': len(order),
+        outside = sorted(set(main) - set(order))  # saved but not in this person's assignment
+        summary['raters'][rater] = {'responses_saved': len(main) - len(outside), 'responses_expected': len(order),
+                                    'saved_outside_assignment': outside,
                                     'responses_revised': revised, 'practice_saved': len(practice)}
-        print(f'{rater:<16} {len(main):>4}/{len(order):<3} {revised:>8} {len(practice):>6}/18')
+        print(f'{rater:<16} {len(main) - len(outside):>4}/{len(order):<3} {revised:>8} {len(practice):>6}/18'
+              + (f'  ({len(outside)} saved outside their assignment; kept in events.jsonl only)' if outside else ''))
     dump(out / 'summary.json', summary)
     print(f'\nWrote {out}')
     complete = [r for r, s in summary['raters'].items() if s['responses_saved'] == s['responses_expected'] > 0]
@@ -126,7 +133,8 @@ def main():
         print('Complete sets can be validated with manual_grading/packet.py check, e.g.:')
         r = complete[0]
         print(f'  .venv/bin/python manual_grading/packet.py check --rater {r} '
-              f'--file {out / r / "ratings_latest.json"} --out workspace/{r}-submission.jsonl')
+              f'--file {out / r / "ratings_latest.json"} --assigned {out / r / "assigned_items.json"} '
+              f'--out workspace/{r}-submission.jsonl')
 
 
 if __name__ == '__main__':
