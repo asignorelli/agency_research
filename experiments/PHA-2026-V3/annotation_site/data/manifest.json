@@ -1,0 +1,11 @@
+{
+ "study_id": "PHA-2026-V3",
+ "rubric_version": "1.0",
+ "blinded_source_sha256": "93f289534d5412b09dd0121768f9cc18cba9b22eb37c11c5ae7e810450e250a4",
+ "rubric_sha256": "3e231dafba2de6c23b4536ae16554ca79017431c5bab1604ee5b37ed60546cb3",
+ "schema_sha256": "08a7d10d7548d218f400de3ec56326ac2889780f2100054726a3caed1c27a7a9",
+ "practice_exercises_sha256": "63c2f73a3e389134e413b702f915a10d4471c1b8a843ba246c24cd9bef03a44f",
+ "practice_key_sha256": "5586d507c060b6c027f9a04599f2d0eb6dc167866cfadd050a9ca557591f0850",
+ "items": 180,
+ "annotators": 4
+}

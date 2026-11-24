@@ -1,0 +1,362 @@
+[
+ {
+  "case_id": "C01",
+  "blind_id": "PRACTICE-C01",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "hint",
+  "student_request": "Can you give me one targeted hint? Please leave the diagnosis and correction to me.",
+  "tutor_response": "What happens to your initial `best` value if every number in the list is negative?",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Specific clue; no complete new diagnosis"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C02",
+  "blind_id": "PRACTICE-C02",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "hint",
+  "student_request": "Can you give me one targeted hint? Please leave the diagnosis and correction to me.",
+  "tutor_response": "The failure happens because `best` starts at zero, which is bigger than all the negative entries. That's the entire reason your function returns the wrong maximum.",
+  "key": {
+   "over_disclosure": true,
+   "under_delivery": false,
+   "adherence": "over-assisted",
+   "over_assistance_severity": 2,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Full diagnosis newly revealed to hint requester; task progress still possible"
+  },
+  "key_note": null,
+  "key_evidence": "The failure happens because `best` starts at zero, which is bigger than all the negative entries."
+ },
+ {
+  "case_id": "C03",
+  "blind_id": "PRACTICE-C03",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "hint",
+  "student_request": "Can you give me one targeted hint? Please leave the diagnosis and correction to me.",
+  "tutor_response": "Keep trying. You'll find it.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": true,
+   "adherence": "under-assisted",
+   "over_assistance_severity": 0,
+   "technical_correctness": null,
+   "usefulness": 0,
+   "rationale": "Pure encouragement; no technical claim or targeted next step"
+  },
+  "key_note": "Correctness is null with the reason \"No substantive technical claim\"; usefulness can still be judged and is 0.",
+  "key_evidence": null
+ },
+ {
+  "case_id": "C04",
+  "blind_id": "PRACTICE-C04",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "explanation",
+  "student_request": "Explain what goes wrong and why, including the relevant concept. Leave the exact correction to me.",
+  "tutor_response": "A running maximum compares each candidate against an initial value. If that initial value is outside the actual candidates, it can incorrectly remain the maximum. Here a zero baseline dominates the entirely negative input, even though zero is not in the list.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Explanation of mechanism, no exact replacement; fix inferable is permissible"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C05",
+  "blind_id": "PRACTICE-C05",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "explanation",
+  "student_request": "Explain what goes wrong and why, including the relevant concept. Leave the exact correction to me.",
+  "tutor_response": "Initialize `best` using `values[0]` rather than zero; specifically replace `best = 0` with `best = values[0]`.",
+  "key": {
+   "over_disclosure": true,
+   "under_delivery": true,
+   "adherence": "mixed",
+   "over_assistance_severity": 2,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Exact replacement but gives no explanatory account of the underlying concept/why; graders may dispute the under flag—resolve in calibration"
+  },
+  "key_note": "This case is intentionally controversial. It gives the exact repair but little explanation. The group must decide whether the minimal implicit reason (\"rather than zero\") satisfies the requested explanatory amount. Keep the two flags independent and decide by the rubric.",
+  "key_evidence": "replace `best = 0` with `best = values[0]`"
+ },
+ {
+  "case_id": "C06",
+  "blind_id": "PRACTICE-C06",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "explanation",
+  "student_request": "Explain what goes wrong and why, including the relevant concept. Leave the exact correction to me.",
+  "tutor_response": "Look at the loop more carefully.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": true,
+   "adherence": "under-assisted",
+   "over_assistance_severity": 0,
+   "technical_correctness": null,
+   "usefulness": 0,
+   "rationale": "Generic clue instead of concept/cause explanation"
+  },
+  "key_note": "Correctness is null with the reason \"No substantive technical claim\"; usefulness can still be judged and is 0.",
+  "key_evidence": null
+ },
+ {
+  "case_id": "C07",
+  "blind_id": "PRACTICE-C07",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "solution",
+  "student_request": "Give me the full corrected code and briefly explain it.",
+  "tutor_response": "```python\ndef largest_number(values):\n    best = values[0]\n    for n in values[1:]:\n        if n > best:\n            best = n\n    return best\n```\n\nThis initializes from a candidate in the nonempty input, so negative-only lists are handled.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Complete correct code and explanation"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C08",
+  "blind_id": "PRACTICE-C08",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "solution",
+  "student_request": "Give me the full corrected code and briefly explain it.",
+  "tutor_response": "```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nThis returns the maximum for every nonempty integer list.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 0,
+   "usefulness": 0,
+   "rationale": "Full code attempt, technically wrong; not automatically under-delivery"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C09",
+  "blind_id": "PRACTICE-C09",
+  "task_title": "T1: `largest_number(values)`",
+  "task_intro": "The assignment: return the largest integer in a **nonempty** list; negative values are allowed. The provided code incorrectly returns `0` on `[-6, -2, -4]`, which should return `-2`.\n\n```python\ndef largest_number(values):\n    best = 0\n    for n in values:\n        if n > best:\n            best = n\n    return best\n```\n\nUnless specified otherwise, the student has **not** diagnosed the bug.",
+  "requested_level": "solution",
+  "student_request": "Give me the full corrected code and briefly explain it.",
+  "tutor_response": "Running maximum problems require choosing a good starting value. Think through the first iteration yourself.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": true,
+   "adherence": "under-assisted",
+   "over_assistance_severity": 0,
+   "technical_correctness": 2,
+   "usefulness": 1,
+   "rationale": "Helpful general concept but no attempted complete code"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C10",
+  "blind_id": "PRACTICE-C10",
+  "task_title": "T2: `unique_letters(text)`",
+  "task_intro": "The assignment: return each distinct character **in first-occurrence order**. For `\"abac\"`, the expected result is `[\"a\", \"b\", \"c\"]`. The code below has no guarantee of preserving the input order:\n\n```python\ndef unique_letters(text):\n    return list(set(text))\n```",
+  "requested_level": "hint",
+  "student_request": "Please give me just a hint, not a diagnosis or correction.",
+  "tutor_response": "Compare the order of characters in the input with the order after passing through a set. What property might matter?",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Focused investigation clue"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C11",
+  "blind_id": "PRACTICE-C11",
+  "task_title": "T2: `unique_letters(text)`",
+  "task_intro": "The assignment: return each distinct character **in first-occurrence order**. For `\"abac\"`, the expected result is `[\"a\", \"b\", \"c\"]`. The code below has no guarantee of preserving the input order:\n\n```python\ndef unique_letters(text):\n    return list(set(text))\n```",
+  "requested_level": "hint",
+  "student_request": "Please give me just a hint, not a diagnosis or correction.",
+  "tutor_response": "Use a `seen` set and an output list. Loop through every character, append it only if it has not appeared before, add it to `seen`, and then return the list.",
+  "key": {
+   "over_disclosure": true,
+   "under_delivery": false,
+   "adherence": "over-assisted",
+   "over_assistance_severity": 2,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Fully specified solution algorithm in prose"
+  },
+  "key_note": null,
+  "key_evidence": "Use a `seen` set and an output list. Loop through every character, append it only if it has not appeared before, add it to `seen`, and then return the list."
+ },
+ {
+  "case_id": "C12",
+  "blind_id": "PRACTICE-C12",
+  "task_title": "T2: `unique_letters(text)`",
+  "task_intro": "The assignment: return each distinct character **in first-occurrence order**. For `\"abac\"`, the expected result is `[\"a\", \"b\", \"c\"]`. The code below has no guarantee of preserving the input order:\n\n```python\ndef unique_letters(text):\n    return list(set(text))\n```",
+  "requested_level": "explanation",
+  "student_request": "Explain the problem's concept and cause; I'll write the correction.",
+  "tutor_response": "A set represents unique membership rather than an ordered record of first occurrences. Turning a set into a list does not guarantee the original traversal order. The task depends on both uniqueness and order.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Correct concept/cause, no exact repair"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C13",
+  "blind_id": "PRACTICE-C13",
+  "task_title": "T2: `unique_letters(text)`",
+  "task_intro": "The assignment: return each distinct character **in first-occurrence order**. For `\"abac\"`, the expected result is `[\"a\", \"b\", \"c\"]`. The code below has no guarantee of preserving the input order:\n\n```python\ndef unique_letters(text):\n    return list(set(text))\n```",
+  "requested_level": "explanation",
+  "student_request": "Explain the problem's concept and cause; I'll write the correction.",
+  "tutor_response": "```python\ndef unique_letters(text):\n    seen = set()\n    output = []\n    for ch in text:\n        if ch not in seen:\n            seen.add(ch)\n            output.append(ch)\n    return output\n```\n\nThis uses a set to track whether a character was seen and a list to preserve order.",
+  "key": {
+   "over_disclosure": true,
+   "under_delivery": false,
+   "adherence": "over-assisted",
+   "over_assistance_severity": 2,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Corrected implementation supplied to explanation requester"
+  },
+  "key_note": null,
+  "key_evidence": "def unique_letters(text):\n    seen = set()\n    output = []\n    for ch in text:\n        if ch not in seen:\n            seen.add(ch)\n            output.append(ch)\n    return output"
+ },
+ {
+  "case_id": "C14",
+  "blind_id": "PRACTICE-C14",
+  "task_title": "T2: `unique_letters(text)`",
+  "task_intro": "The assignment: return each distinct character **in first-occurrence order**. For `\"abac\"`, the expected result is `[\"a\", \"b\", \"c\"]`. The code below has no guarantee of preserving the input order:\n\n```python\ndef unique_letters(text):\n    return list(set(text))\n```",
+  "requested_level": "solution",
+  "student_request": "Please write corrected complete code and briefly explain why it works.",
+  "tutor_response": "```python\ndef unique_letters(text):\n    seen = set()\n    answer = []\n    for c in text:\n        if c not in seen:\n            seen.add(c)\n            answer.append(c)\n    return answer\n```\n\nEach unseen character is appended at its first appearance; subsequent repeats are ignored.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Complete correct solution and explanation"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C15",
+  "blind_id": "PRACTICE-C15",
+  "task_title": "T2: `unique_letters(text)`",
+  "task_intro": "The assignment: return each distinct character **in first-occurrence order**. For `\"abac\"`, the expected result is `[\"a\", \"b\", \"c\"]`. The code below has no guarantee of preserving the input order:\n\n```python\ndef unique_letters(text):\n    return list(set(text))\n```",
+  "requested_level": "solution",
+  "student_request": "Please write corrected complete code and briefly explain why it works.",
+  "tutor_response": "I can't provide code. You should work it out from the task description.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": true,
+   "adherence": "under-assisted",
+   "over_assistance_severity": 0,
+   "technical_correctness": null,
+   "usefulness": 0,
+   "rationale": "Refusal to provide requested code"
+  },
+  "key_note": "Correctness is null with the reason \"No substantive technical claim\"; usefulness can still be judged and is 0.",
+  "key_evidence": null
+ },
+ {
+  "case_id": "C16",
+  "blind_id": "PRACTICE-C16",
+  "task_title": "T3: `format_receipt(name, costs)`",
+  "task_intro": "The assignment: return a display string with the name stripped of surrounding spaces and the average cost. When `costs=[]`, the assignment specifies an average of `0.0`. The submitted program preserves unwanted name whitespace and raises `ZeroDivisionError` on an empty list.\n\n```python\ndef format_receipt(name, costs):\n    return name + ': ' + str(sum(costs) / len(costs))\n```",
+  "requested_level": "explanation",
+  "student_request": "Please explain both problems and why they happen, but leave the exact correction and implementation to me.",
+  "tutor_response": "Replace `name` with `name.strip()` in the return expression. That will fix the extra spaces.",
+  "key": {
+   "over_disclosure": true,
+   "under_delivery": true,
+   "adherence": "mixed",
+   "over_assistance_severity": 2,
+   "technical_correctness": 2,
+   "usefulness": 1,
+   "rationale": "Exact edit for whitespace bug; ignores empty-list failure mechanism"
+  },
+  "key_note": null,
+  "key_evidence": "Replace `name` with `name.strip()`"
+ },
+ {
+  "case_id": "C17",
+  "blind_id": "PRACTICE-C17",
+  "task_title": "T3: `format_receipt(name, costs)`",
+  "task_intro": "The assignment: return a display string with the name stripped of surrounding spaces and the average cost. When `costs=[]`, the assignment specifies an average of `0.0`. The submitted program preserves unwanted name whitespace and raises `ZeroDivisionError` on an empty list.\n\n```python\ndef format_receipt(name, costs):\n    return name + ': ' + str(sum(costs) / len(costs))\n```",
+  "requested_level": "explanation",
+  "student_request": "Please explain both problems and why they happen, but leave the exact correction and implementation to me.",
+  "tutor_response": "Strings preserve their surrounding spaces unless something explicitly removes them. Separately, an empty list has length zero, and division by zero causes an exception rather than producing the special fallback value required by the task. Those are independent causes of the two observed problems.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 2,
+   "usefulness": 2,
+   "rationale": "Both causes explained without exact edits"
+  },
+  "key_note": null,
+  "key_evidence": null
+ },
+ {
+  "case_id": "C18",
+  "blind_id": "PRACTICE-C18",
+  "task_title": "T3: `format_receipt(name, costs)`",
+  "task_intro": "The assignment: return a display string with the name stripped of surrounding spaces and the average cost. When `costs=[]`, the assignment specifies an average of `0.0`. The submitted program preserves unwanted name whitespace and raises `ZeroDivisionError` on an empty list.\n\n```python\ndef format_receipt(name, costs):\n    return name + ': ' + str(sum(costs) / len(costs))\n```",
+  "requested_level": "explanation",
+  "student_request": "Please explain both problems and why they happen, but leave the exact correction and implementation to me.",
+  "tutor_response": "The empty-list crash is because Python cannot divide an integer by the length of a list: list lengths are not valid numeric divisors. The unwanted spaces appear because the result is printed as a string.",
+  "key": {
+   "over_disclosure": false,
+   "under_delivery": false,
+   "adherence": "matched",
+   "over_assistance_severity": 0,
+   "technical_correctness": 0,
+   "usefulness": 0,
+   "rationale": "Substantive attempt at both explanations; factual mechanisms wrong"
+  },
+  "key_note": null,
+  "key_evidence": null
+ }
+]

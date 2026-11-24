@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PHA Annotation</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f5d8a'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/">PHA annotation</a>
+    <div class="topbar-right">
+      <span id="sync-status" class="sync" hidden></span>
+      <button type="button" class="link-btn" id="open-rubric">Rubric</button>
+      <span id="who" class="who"></span>
+      <button type="button" class="link-btn" id="sign-out" hidden>Sign out</button>
+    </div>
+  </header>
+  <main id="app" tabindex="-1"><p class="loading">Loading…</p></main>
+  <div id="modal-root"></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

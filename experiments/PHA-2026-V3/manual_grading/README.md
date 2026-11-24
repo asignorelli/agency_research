@@ -6,6 +6,12 @@ needs two independent human reviews: **360 initial reviews** in total. Automated
 grades have already been produced, but they remain provisional and are not human
 reliability evidence. This kit contains no automated scores or condition mapping.
 
+> **Prefer the website.** The [annotation site](../annotation_site/README.md) presents
+> this same rubric, practice cases, and condition-blind packet in a browser. It saves
+> each record to a shared database in the exact `ratings.json` format used below, so
+> the `packet.py check` and import steps are unchanged. The files here remain the
+> authoritative reference.
+
 ## What to read
 
 1. Read [the scoring walkthrough](scoring_walkthrough.md), then the
